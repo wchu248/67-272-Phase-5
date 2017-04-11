@@ -52,7 +52,7 @@ group :development do
   gem 'quiet_assets'
   gem 'hirb'
   gem 'wirble'
-  gem 'thin'
+  # gem 'thin'
   gem 'better_errors'
   gem 'binding_of_caller', '0.7.2'
   gem 'meta_request'
