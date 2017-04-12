@@ -21,4 +21,4 @@ There are other 40 customers randomly generated in the system along with 45 scho
 
 You have been given some additional starter code, including the Cart module, as discussed in class. You may edit these modules so long as everything works as it is supposed to -- breaking working code can have serious consequences so do so carefully.
 
-The focus this phase is not so much on the testing as it is designing the user's interactions and experience with the chess store app.
+The focus this phase is not so much on the testing as it's designing the user's interactions and experience with the chess store app.
