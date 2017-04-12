@@ -4,7 +4,7 @@ class ItemPrice < ActiveRecord::Base
 
   # List of allowable categories
   CATEGORIES = [['Wholesale','wholesale'],['Manufacturer','manufacturer']]
-#tests
+
   # Relationships
   belongs_to :item
 
