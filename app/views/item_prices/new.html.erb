@@ -28,6 +28,13 @@
     		<%= f.number_field :price %>
 			</div>
     </div>
+		<div class="row">
+			<div class="input-field col s8">
+				<i class="material-icons prefix">list</i>
+				<%= f.label :category %><br></br>
+				<%= f.select :category, ItemPrice::CATEGORIES %>
+			</div>
+    </div>
 		<div class ="row">
 			<div class="input-field col s8">
 				<button class="btn waves-effect waves-light">
