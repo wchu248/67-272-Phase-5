@@ -31,11 +31,12 @@
             <li><%= link_to "Purchases", purchases_path %></li>
             <li><%= link_to "Prices", item_prices_path %></li>
             <% if logged_in? %>
-              <li> Welcome, <%= current_user.proper_name %>! </li>
+              <li> <%= current_user.proper_name %> :: <%= current_user.role.capitalize %> </li>
               <li> <%= link_to "Logout", logout_path %> </li>
             <% else %>
-              <li> <%= link_to "Login", login_path %> </li>
+              <li> <a class="modal-trigger" href="#loginModal">Login</a> </li>
             <% end%>
+            <%= render partial: 'partials/login_modal' %>  
           </ul>
         </div>
       </div>

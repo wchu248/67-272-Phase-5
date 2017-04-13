@@ -1,0 +1,24 @@
+<div id="loginModal" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h5 class="black-text">Please use your email and password to login to our system.</h5>
+    <%= form_tag sessions_path do %>
+      <div class="control-group">
+        <%= label_tag :email %>
+        <div class="controls black-text">
+          <%= text_field_tag :email, params[:email] %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= label_tag :password %>
+        <div class="controls black-text">
+          <%= password_field_tag :password %>
+        </div>
+      </div>
+      <div class="actions">
+      	<button class="btn waves-effect waves-light">
+          <%= submit_tag "Login"%>
+				</button>
+      </div>
+    <% end %>
+  </div>
+</div>
