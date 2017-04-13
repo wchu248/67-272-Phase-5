@@ -1,25 +1,17 @@
-<div class="row">
-	<div class="small-7 columns">
-		<h2>Contact Chess Warehouse</h2>
-		<p class="supertiny">&nbsp;</p>
-		<table cellpadding="3">
-			<tr>
-				<td>Webmaster:&nbsp;&nbsp;&nbsp;</td>
-				<td>Winston Chu</td>
-			</tr>
-			<tr>
-				<td>Email:</td>
-				<td>
-				<%= mail_to("wpchu@andrew.cmu.edu", "wpchu@andrew.cmu.edu", :encode => "javascript") %> 
-				</td>
-			</tr>
-			<tr>
-				<td>Phone:</td>
-				<td>908-838-8767</td>
-			</tr>
-		</table>
-			
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-	</div>
-</div>
+<h3>Contact Us</h3>
+
+<!-- Taken from PATs example, but modified a teeny tiny bit -->
+<p>	<%= image_tag 'contact.jpg', class: "left" %>Unfortunately, Alex and Mark's
+    Chess Store is not a real online website, but rather a project for 
+    programming students at Carnegie Mellon University. We are sure that you 
+    wanted to buy some chess items from the absolute best chess players on the 
+    planet, but that's how it goes sometimes. We apologize for this, and if you 
+    would like to contact someone about it, here is the contact info:</p>
+
+<!-- Contact Info -->
+<i class="material-icons prefix">call</i>
+(908)-838-8767 <br>
+<i class="material-icons prefix">location_city</i>
+5000 Forbes Avenue Pittsburgh, PA 15213 <br>
+<i class="material-icons prefix">email</i>
+<%= mail_to("wpchu@andrew.cmu.edu", "Winston Chu: wpchu@andrew.cmu.edu", encode: "javascript") %> 

@@ -11,14 +11,9 @@
  * file per style scope.
  *
  *= require_self
- *= require foundation.min
- *= require normalize
- *= require font-awesome.min
- *= require foundation_and_overrides
- *= require simple_form
  */
 
- .tl_name {
+.tl_name {
   width: 225px;
   display: block;
   position: absolute;
@@ -58,31 +53,8 @@
   font-weight: normal;
 }
 
-#title_area {
-  background-color: #ffffff;
-}
-
 #main_content {
   margin-top: 10px;
-}
-
-#footer {
-  margin-top: 15px;
-  padding-top: 0px;
-  padding-bottom: 15px;
-  background-color:#ffffff;
-  color: #6493ba;
-  text-align: center;
-}
-
-#footer a {
-  color: #7f9eb8;
-  text-decoration: none;
-}
-
-#footer a:hover {
-  color: #7f9eb8;
-  text-decoration: underline;
 }
 
 #copy {
@@ -90,7 +62,7 @@
 }
 
 table {
-  border-collapse:collapse;
+  border-collapse: collapse;
 }
 
 table th.centered, table td.centered {
@@ -108,8 +80,90 @@ li.well {
 
 .pagination ul > li > a, .pagination ul > li > span {
   border-left-width: 1px;
+  margin-top: 5px;
 }
 
 label {
   padding-right: 4px;
+}
+
+#error_explanation {
+  background-color: #FCC;
+  border: solid 1px #C66;
+	color: #800000;
+  padding: 5px 8px;
+  margin-top: 10px;
+  margin-right: auto;
+  font-style: italic;
+}
+
+.notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+	color: #00AB56;
+  padding: 5px 8px;
+  margin-top: 10px;
+  margin-right: auto;
+  font-style: italic;
+}
+
+img.left {
+	float: left;
+	padding-right: 15px;
+	padding-bottom: 10px;
+	border: 0px;
+}
+
+.parallax-container {
+  height: 150px;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: repeating-linear-gradient(
+              45deg,
+              rgba(145, 102, 36, 0.5),
+              rgba(145, 102, 36, 0.5) 10px,
+              rgba(169, 123, 54, 0.5) 10px,
+              rgba(169, 123, 54, 0.5) 20px);
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+        
+.pagination a li.active {
+  color: #fff;
+}
+
+.row {
+  padding-left: 10px;
+}
+
+.content {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 2%;
+}
+
+th {
+  text-decoration: underline;
+}
+
+.price-table {
+  padding: auto;
+  margin: auto;
+  margin-right: 50%;
+}
+
+footer {
+   text-align: left;
+   padding-left: 5px;;
 }

@@ -1,20 +1,27 @@
 <% unless items.nil? || items.empty? %>
   <h5><%= item_type.capitalize %></h5>
-  <table class="table table-striped">
+  <table class="bordered highlight centered responsive-table">
     <thead>
       <tr>
-        <th width="300">Name</th>
-        <th width="100">Price</th>
-        <th width="100">Inventory</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Inventory</th>
+        <th></th>
       </tr>
     </thead>
+
     <tbody>
-      <% items.each do |item| %>
-        <tr>
-          <td><%= link_to item.name, item_path(item) %></td>
-          <td><%= number_to_currency item.current_price %></td>
-          <td><%= item.inventory_level %></td>
-        </tr>
+      <% for item in items %>
+      <tr>
+        <td><%= link_to item.name, item_path(item) %></td>
+        <% if item.current_price.nil? %>
+          <td>N/A</td>
+        <% else %>
+          <td><%= number_to_currency(item.current_price) %></td>
+        <% end %>
+        <td><%= number_with_delimiter(item.inventory_level) %></td>
+        <td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
+      </tr>
       <% end %>
     </tbody>
   </table>

@@ -1,3 +1,7 @@
+<!-- Flash a notice, if necessary -->
+<% if flash[:notice] %>
+	<div class="notice"><%= flash[:notice] %></div>
+<% end %>
 <%= render partial: "partials/index_structure", locals: {model_name: "item", 
                                                          primary: "active_items", 
                                                          secondary: nil,

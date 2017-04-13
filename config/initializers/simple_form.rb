@@ -5,8 +5,24 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default, class: :input,
-    hint_class: :field_with_hint, error_class: :field_with_errors do |b|
+  config.wrappers :material_checkbox,
+    hint_class: :field_with_hint, error_class: 'has-error' do |b|
+    b.use :input
+    b.use :label
+
+    b.use :hint,  wrap_with: { tag: :span, class: 'help-block' }
+    b.use :error, wrap_with: { tag: :span, class: 'error-block' }
+
+    b.use :html5
+    end
+
+  config.wrappers :disabled_form do |b|
+    b.use :label
+    b.use :input, disabled: true, readonly: true
+  end
+
+  config.wrappers :default, class: 'input-field',
+    hint_class: :field_with_hint, error_class: 'has-error' do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
     # given input by passing: `f.input EXTENSION_NAME => false`.
@@ -28,32 +44,33 @@ SimpleForm.setup do |config|
     # extensions by default, you can change `b.optional` to `b.use`.
 
     # Calculates maxlength from length validations for string inputs
-    # and/or database column lengths
-    b.optional :maxlength
+    b.use :maxlength
 
-    # Calculate minlength from length validations for string inputs
-    b.optional :minlength
+    # Used for materializeCSS CharacterCounter
+    b.use :length
 
     # Calculates pattern from format validations for string inputs
     b.optional :pattern
 
     # Calculates min and max from length validations for numeric inputs
-    b.optional :min_max
+    b.use :min_max
 
     # Calculates readonly automatically from readonly attributes
     b.optional :readonly
 
     ## Inputs
-    b.use :label_input
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :input
+    b.use :label
+
+    b.use :hint,  wrap_with: { tag: :span, class: 'help-block' }
+    b.use :error, wrap_with: { tag: :span, class: 'error-block' }
 
     ## full_messages_for
     # If you want to display the full error message for the attribute, you can
     # use the component :full_error, like:
     #
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
-  end
+    end
 
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :default
@@ -62,10 +79,10 @@ SimpleForm.setup do |config|
   # Defaults to :nested for bootstrap config.
   #   inline: input + label
   #   nested: label > input
-  config.boolean_style = :nested
+  config.boolean_style = :inline
 
   # Default class for buttons
-  config.button_class = 'btn'
+  config.button_class = 'waves-effect waves-light btn'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -76,7 +93,7 @@ SimpleForm.setup do |config|
   config.error_notification_tag = :div
 
   # CSS class to add for error notification helper.
-  config.error_notification_class = 'error_notification'
+  config.error_notification_class = 'alert alert-danger'
 
   # ID to add for error notification helper.
   # config.error_notification_id = nil
@@ -94,7 +111,8 @@ SimpleForm.setup do |config|
   # config.collection_wrapper_class = nil
 
   # You can wrap each item in a collection of radio/check boxes with a tag,
-  # defaulting to :span.
+  # defaulting to :span. Please note that when using :boolean_style = :nested,
+  # SimpleForm will force this option to be a label.
   # config.item_wrapper_tag = :span
 
   # You can define a class to use in all item wrappers. Defaulting to none.
@@ -166,4 +184,6 @@ SimpleForm.setup do |config|
 
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
+
+  config.wrapper_mappings = { switch: :material_checkbox }
 end

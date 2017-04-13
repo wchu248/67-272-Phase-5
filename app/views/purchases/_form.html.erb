@@ -1,14 +1,40 @@
-<%= simple_form_for @purchase, html: { class: 'form-horizontal', multipart: true } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Purchase</legend>
+<h4><i class="medium material-icons">shopping_basket</i> New Purchase</h4>
 
-    <%= f.input :item_id, collection: Item.active.to_a, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :quantity, input_html: {class: "avg"} %>
+<div class="row">
+	<%= simple_form_for(@purchase) do |f| %>
 
+		<!-- Dispaly error messages, if any -->
+		<% if @purchase.errors.any? %>
+			<div id="error_explanation">
+				<h6><%= pluralize(@purchase.errors.count, "error") %> prohibited this item from being saved:</h6>
+				<% @purchase.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</div>
+  	<% end %>
 
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', purchases_path, :class => 'button alert radius' %>
+		<!-- Form for creating a new purchase -->
+		<div class="row">
+			<div class="input-field col s8">
+				<i class="material-icons prefix">info_outline</i>
+				<%= f.label :item %><br></br>
+    		<%= f.collection_select :item_id, Item.active.alphabetical.all, :id, :name %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s8">
+				<i class="material-icons prefix">equalizer</i>
+				<%= f.label :quantity %>
+    		<%= f.number_field :quantity %>
+			</div>
     </div>
-  </fieldset>
-<% end %>
+		<div class ="row">
+			<div class="input-field col s8">
+				<button class="btn waves-effect waves-light">
+					<i class="material-icons right">send</i>
+					<%= f.submit %>
+				</button>
+			</div>
+		</div>
+	<% end %>
+</div>

@@ -46,6 +46,10 @@ class User < ActiveRecord::Base
   before_destroy :is_never_destroyable
   before_save :reformat_phone
   
+  def self.authenticate(email, password)
+    find_by_email(email).try(:authenticate, password)
+  end
+
   private
   def reformat_phone
     phone = self.phone.to_s  # change to string in case input as all numbers 

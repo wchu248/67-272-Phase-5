@@ -8,25 +8,33 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <!-- Link for Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
   </head>
 
   <body>
-    <div id="title_area">
-      <%= link_to image_tag('chess_store_title.png'), home_path %>
-    </div>
     <%= render :partial => "partials/nav" %>
     
-    <div class="row">
-      <div class="small-12 columns" id="main_content">
-        <%= render :partial => "partials/flash" %>
-        <%= yield %>
+  <main>
+    <div class="container">
+      <div class="content">
+        <div class="row">
+            <!-- MAIN CONTENT GOES HERE -->
+            <!-- Flash a notice, if necessary -->
+            <% if flash[:notice] %>
+              <div class="notice"><%= flash[:notice] %></div>
+            <% end %>
+            <%= yield %>
+            <%= javascript_include_tag "application" %>
+        </div>
       </div>
     </div>
-    <footer>
-      <div class="small-12 columns" id="footer">
-        <%= render partial: 'partials/footer' %>
-      </div>
-    </footer> 
+  </main>
+    <%= render partial: 'partials/footer' %>  
     <%= javascript_include_tag "application" %>
   </body>
 </html>
