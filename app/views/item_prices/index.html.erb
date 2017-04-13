@@ -1,4 +1,35 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "item_price", 
-                                                         primary: "current_item_prices", 
-                                                         secondary: nil,
-                                                         sidebar: nil} %>
+<h3>Current Item Prices</h3>
+
+<!-- Technically, add a new item price to the system -->
+<a class="waves-effect waves-light btn" <%= link_to "Change an Item's Price", new_item_price_path %> </a>
+
+<% unless @active_items.empty? %>
+	<div class="price-table">
+		<table class="bordered highlight responsive-table">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% for item in @active_items %>
+				<tr>
+					<td><%= link_to item.name, item_path(item) %></td>
+					<% if item.current_price.nil? %>
+						<td>N/A</td>
+					<% else %>
+						<td><%= number_to_currency(item.current_price) %></td>
+					<% end %>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<% else %>
+	N/A
+<% end %>
+
+<!-- Add the pagination using will_paginate gem -->
+<%= will_paginate @active_items %>

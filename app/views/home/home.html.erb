@@ -1,3 +1,30 @@
+<h3>Welcome to the Chess Store!</h3>
 
-<%# render :partial => 'general_home' %>
-<%= render :partial => 'reorder_list' %>
+<%= image_tag 'background.jpg' %>
+
+<h4>Reorder List</h4>
+	<% unless @items_to_reorder.empty? %>
+		<table class="bordered highlight centered responsive-table">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Inventory</th>
+								<th>Reorder Level</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<% for item in @items_to_reorder %>
+				<tr>
+					<td><%= link_to item.name, item_path(item) %></td>
+					<td><%= item.inventory_level %></td>
+					<td><%= item.reorder_level %></td>
+					<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		No items need to be reordered at this time.
+	<% end %>

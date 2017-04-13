@@ -4,21 +4,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Chess Warehouse :: <%= controller.controller_name.capitalize %></title>
+    <title>A&M Chess Store :: <%= controller.controller_name.capitalize %></title>
+
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <!-- Materialize CSS and JavaScript links -->
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     <!-- Link for Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+          
   </head>
 
   <body>
-    <%= render :partial => "partials/nav" %>
-    
+    <!-- Nav bar goes here -->
+    <nav>
+      <div class="nav-wrapper teal">
+        <div class="top-bar">
+          <a class="brand-logo" <%= link_to "Alex & Mark's Chess Store", home_path %> </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><%= link_to "Items", items_path %></li>
+            <li><%= link_to "Purchases", purchases_path %></li>
+            <li><%= link_to "Prices", item_prices_path %></li>
+            <% if logged_in? %>
+              <li> Welcome, <%= current_user.proper_name %>! </li>
+              <li> <%= link_to "Logout", logout_path %> </li>
+            <% else %>
+              <li> <%= link_to "Login", login_path %> </li>
+            <% end%>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </body>
   <main>
     <div class="container">
       <div class="content">
@@ -34,7 +56,8 @@
       </div>
     </div>
   </main>
-    <%= render partial: 'partials/footer' %>  
-    <%= javascript_include_tag "application" %>
+  <!-- Footer goes here -->
+  <%= render partial: 'partials/footer' %>  
   </body>
+
 </html>

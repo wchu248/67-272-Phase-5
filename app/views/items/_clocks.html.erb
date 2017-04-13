@@ -1,17 +1,16 @@
-<!-- Display a table showing information of all the inactive items -->
+<!-- Display a table showing information of all the clocks -->
 <table class="bordered highlight centered responsive-table">
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Price</th>
 			<th>Inventory</th>
-			<th>Category</th>
 			<th></th>
 		</tr>
 	</thead>
 
 	<tbody>
-		<% for item in @inactive_items %>
+		<% for item in @clocks %>
 		<tr>
 			<td><%= link_to item.name, item_path(item) %></td>
 			<% if item.current_price.nil? %>
@@ -20,7 +19,6 @@
 				<td><%= number_to_currency(item.current_price) %></td>
 			<% end %>
 			<td><%= number_with_delimiter(item.inventory_level) %></td>
-			<td><%= item.category.capitalize %></td>
 			<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
 		</tr>
 		<% end %>
