@@ -3,15 +3,15 @@
 <% else%>
   <br><br>
 <% end %>
-<h5>Please use your email and password to login to our system.</h5>
+<h5>Please use your email/username and password to login to our system.</h5>
 <br>
 <div class="row centered">
   <div class="col s10"> 
     <%= form_tag sessions_path do %>
       <div class="control-group">
-        <%= label_tag :email %>
+        <%= label_tag :username, "Username" %>
         <div class="controls">
-          <%= text_field_tag :email, params[:email] %>
+          <%= text_field_tag :username, params[:username] %>
         </div>
       </div>
 
