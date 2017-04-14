@@ -1,7 +1,12 @@
-<br><br><br>
-<h3>Log In</h3>
-<div class="row">
-  <div class="small-7 columns"> 
+<% if flash[:alert] %>
+  <div class="alert"><%= flash[:alert] %></div>
+<% else%>
+  <br><br>
+<% end %>
+<h5>Please use your email and password to login to our system.</h5>
+<br>
+<div class="row centered">
+  <div class="col s10"> 
     <%= form_tag sessions_path do %>
       <div class="control-group">
         <%= label_tag :email %>
@@ -17,8 +22,12 @@
         </div>
       </div>
       
-      <div class="actions"><%= submit_tag "Log In" %></div>
+      <div class="actions">
+      	<button class="btn waves-effect waves-light">
+          <%= submit_tag "Login"%>
+				</button>
+      </div>
     <% end %>
   </div>
 </div>
-<br><br><br>
+<br><br><br><br>

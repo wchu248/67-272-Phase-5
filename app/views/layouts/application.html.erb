@@ -34,9 +34,8 @@
               <li> <%= current_user.proper_name %> :: <%= current_user.role.capitalize %> </li>
               <li> <%= link_to "Logout", logout_path %> </li>
             <% else %>
-              <li> <a class="modal-trigger" href="#loginModal">Login</a> </li>
-            <% end%>
-            <%= render partial: 'partials/login_modal' %>  
+              <li> <%= link_to "Login", login_path %> </li>
+            <% end%>  
           </ul>
         </div>
       </div>
