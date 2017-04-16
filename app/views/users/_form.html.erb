@@ -52,14 +52,25 @@
       <div class="input-field col s10">
         <i class="material-icons prefix">lock_outline</i>
         <%= f.label :password %>
-        <%= f.text_field :password %>
+        <input type="password"<%= f.text_field :password %>
       </div>
     </div>
 		<div class="row">
 			<div class="input-field col s10">
 				<i class="material-icons prefix">lock</i>
 				<%= f.label :password_confirmation %>
-    		<%= f.text_field :password_confirmation %>
+    		<input type="password"<%= f.text_field :password_confirmation %>
+			</div>
+		</div>
+    <div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">list</i>
+				<%= f.label :role %><br></br>
+        <% if @user.role?(:admin) || @user.role?(:manager) %>
+				  <%= f.select :role, User::ROLES %>
+        <% else %>
+          <%= f.select :role, User::ROLES, selected: :customer, :disabled => [:admin, :manager, :shipper] %>
+        <% end %>
 			</div>
 		</div>
 		<div class ="row">

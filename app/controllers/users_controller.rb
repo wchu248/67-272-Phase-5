@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to home_path, notice: "Thank you for signing up!"
+      redirect_to home_path, notice: "Welcome, #{@user.first_name}. Thank you for signing up!"
     else
       flash[:alert] = "This user could not be created."
       render "new"
@@ -46,9 +46,10 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    if current_user && current_user.role?(:admin)
+    if current_user && (current_user.role?(:admin) || current_user.role?(:manager))
       params.require(:user).permit(:first_name, :last_name, :email, :phone, :username, :password, :password_confirmation, :role, :active) 
-    elsif current_user && current_user.role?()
+    else
+      params.require(:user).permit(:first_name, :last_name, :email, :phone, :username, :password, :password_confirmation, :role) 
     end
   end
 
