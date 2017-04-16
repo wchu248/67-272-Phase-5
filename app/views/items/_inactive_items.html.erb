@@ -21,7 +21,9 @@
 			<% end %>
 			<td><%= number_with_delimiter(item.inventory_level) %></td>
 			<td><%= item.category.capitalize %></td>
-			<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
+			<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
+				<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
+			<% end %>
 		</tr>
 		<% end %>
 	</tbody>

@@ -1,7 +1,16 @@
 <h3>Welcome to the Chess Store!</h3>
 
-<%= image_tag 'background.jpg' %>
-
+<% if !logged_in? || current_user.role?(:customer) %>
+	<%= image_tag 'background.jpg', class: "left" %>
+	<p> We are Alex and Mark Heimann, USCF and FIDE Chess
+	Masters who have graduated from college and want to 
+	help you! Our goal is help you develop your chess 
+	skills and provide you with the necessary items to do so. 
+	That's why we are committed to giving you the best products
+	at the most affordable prices. If your school or 
+	institution needs chess items, then this is the store
+	for you! Happy shopping! <p>
+<% else %>
 <h4>Reorder List</h4>
 	<% unless @items_to_reorder.empty? %>
 		<table class="bordered highlight centered responsive-table">
@@ -25,6 +34,7 @@
 				<% end %>
 			</tbody>
 		</table>
-	<% else %>
+	<% else %> 
 		No items need to be reordered at this time.
 	<% end %>
+<% end %>
