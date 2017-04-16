@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :purchases
   resources :item_prices
   resources :users
+  resources :schools
   resources :sessions
 
   # Semi-static page routes
