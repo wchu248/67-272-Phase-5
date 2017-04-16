@@ -21,26 +21,9 @@
   </head>
 
   <body>
-    <!-- Nav bar goes here -->
+    <!-- Nav bar dropdown content here -->
     <nav>
-      <div class="nav-wrapper teal">
-        <div class="top-bar">
-          <a class="brand-logo" <%= link_to "Alex & Mark's Chess Store", home_path %> </a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <% if logged_in? %>
-              <li><%= link_to "Items", items_path %></li>
-              <li><%= link_to "Purchases", purchases_path %></li>
-              <li><%= link_to "Prices", item_prices_path %></li>
-              <li> <%= current_user.proper_name %> :: <%= current_user.role.capitalize %> </li>
-              <li> <%= link_to "Logout", logout_path %> </li>
-            <% else %>
-              <li><%= link_to "View Items", items_path %></li>
-              <li> <%= link_to "Create Account", new_user_path %>
-              <li> <%= link_to "Login", login_path %> </li>
-            <% end%>  
-          </ul>
-        </div>
-      </div>
+      <%= render partial: 'partials/nav' %>
     </nav>
   </body>
   <main>

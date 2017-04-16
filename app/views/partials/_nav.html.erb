@@ -1,0 +1,21 @@
+<div class="nav-wrapper teal">
+  <div class="top-bar">
+    <a class="brand-logo" <%= link_to "Alex & Mark's Chess Store", home_path %> </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <% if logged_in? && current_user.role?(:customer) %>
+        <li><%= link_to "Browse Items", items_path %></li>
+        <li><%= link_to '<i class="material-icons left">shopping_cart</i>'.html_safe, items_path %></li>
+        <!-- <ul id="customer_dropdown" class="dropdown-content"> -->
+        <li><%= link_to "View Profile", user_path(current_user.id) %></li>
+        <li><%= link_to "Edit Account", edit_user_path(current_user.id) %></li>
+        <li><%= link_to "Logout", logout_path %></li>
+        <!-- </ul> --> 
+        <!-- <li><a class="dropdown-button" href="#!" data-activates="customer_dropdown"><%= current_user.proper_name %><i class="material-icons right">arrow_drop_down</i></a></li> -->
+      <% else %>
+        <li><%= link_to "View Items", items_path %></li>
+        <li> <%= link_to "Create Account", new_user_path %>
+        <li> <%= link_to "Login", login_path %> </li>
+      <% end%>  
+    </ul>
+  </div>
+</div>

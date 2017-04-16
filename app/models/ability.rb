@@ -13,7 +13,13 @@ class Ability
     elsif user.role? :shipper
       nil
     elsif user.role? :customer
-      nil
+      can :show, User do |u|
+        u.id == user.id
+      end
+      can :update, User do |u|
+        u.id == user.id
+      end
+      can :read, Item
     else
       # guest action
       can :read, Item

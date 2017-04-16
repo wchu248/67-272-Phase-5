@@ -4,8 +4,10 @@
 		<tr>
 			<th>Name</th>
 			<th>Price</th>
-			<th>Inventory</th>
-			<th></th>
+			<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
+				<th>Inventory</th>
+				<th></th>
+			<% end %>
 		</tr>
 	</thead>
 
@@ -18,8 +20,8 @@
 			<% else %>
 				<td><%= number_to_currency(item.current_price) %></td>
 			<% end %>
-			<td><%= number_with_delimiter(item.inventory_level) %></td>
 			<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
+				<td><%= number_with_delimiter(item.inventory_level) %></td>
 				<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
 			<% end %>
 		</tr>

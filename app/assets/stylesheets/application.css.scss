@@ -183,3 +183,23 @@ footer {
 .modal { 
   height: 63% !important ; 
 }
+
+/* http://stackoverflow.com/questions/41406689/change-the-color-of-tab-text-and-the-underline-in-materialize-framework */
+
+.tabs .tab a{
+    color:#009688 !important;
+}
+
+.tabs .tab a:hover {
+    background-color:#eee !important;
+    color:#4db6ac !important;
+}
+
+.tabs .tab a.active {
+    background-color:#009688 !important;
+    color:#fff !important;
+}
+
+.tabs .indicator {
+    background-color:#80cbc4 !important;
+}
