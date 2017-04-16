@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
+
+  include ChessStoreHelpers::Cart
+
   def new
+    create_cart
   end
   
   def create
@@ -15,6 +19,7 @@ class SessionsController < ApplicationController
   
   def destroy
     session[:user_id] = nil
+    destroy_cart
     redirect_to root_url, notice: "Logged out."
   end
 end

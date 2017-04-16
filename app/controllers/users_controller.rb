@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  include ChessStoreHelpers::Cart
+
   before_action :set_user, only: [:show, :edit, :update]
   load_and_authorize_resource
 
@@ -10,6 +12,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     session[:user_id] = @user.id
+    create_cart
   end
 
   def edit

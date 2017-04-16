@@ -1,0 +1,79 @@
+<div class="row">
+	<%= simple_form_for(@school) do |f| %>
+
+		<!-- Display errors, if any -->
+		<% if @school.errors.any? %>
+			<div id="error_explanation">
+				<h6><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h6>
+				<% @school.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</div>
+  	<% end %>
+		
+		<div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">business</i>
+				<%= f.label :name %>
+    		<%= f.text_field :name %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">place</i>
+				<%= f.label :street_1 %>
+    		<%= f.text_field :street_1 %>
+			</div>
+    </div>
+    <div class="row">
+      <div class="input-field col s10">
+        <i class="material-icons prefix">place</i>
+        <%= f.label :street_2 %>
+        <%= f.text_field :street_2 %>
+      </div>
+      </div>
+		<div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">location_city</i>
+				<%= f.label :city %>
+    		<%= f.text_field :city %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">terrain</i>
+				<%= f.label :state %><br><br>
+    		<%= f.select :state, School::STATES_LIST %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">art_track</i>
+				<%= f.label :zip %>
+    		<%= f.number_field :zip %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">arrow_downward</i>
+				<%= f.label :min_grade %>
+    		<%= f.number_field :min_grade %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">arrow_upward</i>
+				<%= f.label :max_grade %>
+    		<%= f.number_field :max_grade %>
+			</div>
+		</div>
+		<div class ="row">
+			<div class="input-field col s10">
+				<button class="btn waves-effect waves-light">
+					<i class="material-icons right">school</i>
+					<%= f.submit %>
+				</button>
+			</div>
+		</div>
+	<% end %>
+</div>

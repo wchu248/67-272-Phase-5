@@ -1,0 +1,30 @@
+<table class = "hoverable">
+    <thead>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>    
+    </thead>
+    <tbody>
+        <% session[:cart].keys.each do |i|%>
+            <tr>
+                <td><%= Item.find(i).name %></td>
+                <td><%= session[:cart][i] %></td>
+                <td><%= number_to_currency Item.find(i).current_price * session[:cart][i] %></td>
+                <td><%= button_to "Remove From Cart", remove_from_cart_path(i) %></td>
+                <td><%= button_to "One More!", add_to_cart_path(i) %></td>
+
+            </tr>
+        <% end %>
+        <tr>
+            <td><b>Subtotal</b></td><td></td><td><%= number_to_currency(cart_cost) %></td><td></td>
+        </tr>
+        <tr>
+            <td><b>Shipping</b></td><td></td><td><%= number_to_currency(shipping_cost) %></td><td></td>
+        </tr>
+        <tr>
+            <td><b>Grand Total</b></td><td></td><td><%= number_to_currency(shipping_cost + cart_cost) %></td><td></td>
+        </tr>
+    </tbody>
+</table>

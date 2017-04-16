@@ -5,3 +5,32 @@
 <em>A valued Chess Store customer since <%= Date.current.year %>.</em>
 <br><br>
 <a class="waves-effect waves-teal btn" <%= link_to "Edit Info", edit_user_path(current_user) %> </a>
+
+<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager))%>
+  <div id="school-table">
+    <h4>Schools</h4>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% for school in current_user.schools %>
+      <tr>
+        <td><%= school.name %></td>
+        <td>
+          <%= school.street_1 %><br>
+          <% if !school.street_2.nil? %>
+            <%= school.street_2 %><br>
+          <% end %>
+          <%= school.city %>, <%= school.state %> <%= school.zip %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+    </table>
+  </div>
+<% end %>

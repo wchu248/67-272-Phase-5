@@ -22,7 +22,11 @@ class SchoolsController < ApplicationController
   def create
     @school = School.new(school_params)
     if @school.save
-      redirect_to school_path(@school), notice: "Successfully created #{@school.name}."
+      if can? :read, @school
+        redirect_to school_path(@school), notice: "Successfully added #{@school.name} to our system."
+      else
+        redirect_to user_path(current_user), notice: "Successfully added #{@school.name} to our system."
+      end
     else
       render action: 'new'
     end

@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy', as: :logout
   get 'login' => 'sessions#new', as: :login
   
+  # Cart stuff
+  get 'cart' => 'home#cart', as: :cart
+  post "items/:id/add_to_cart" => "items#add_to_cart", as: :add_to_cart
+  post "items/:id/remove_from_cart" => "items#remove_from_cart", as: :remove_from_cart
+
   # Set the root url
   root :to => 'home#home'  
 

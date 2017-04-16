@@ -5,7 +5,20 @@
       <% if logged_in? && current_user.role?(:customer) %>
         <li><%= link_to "Browse Items", items_path %></li>
         <li><%= link_to "Add a School", new_school_path %></li>
-        <li><%= link_to "Cart", items_path %></li>
+        <li><a href="#cart_modal">Cart</a></li>
+        <div id="cart_modal" class="modal">
+          <div class="modal-content">
+            <h4 class="black-text">Your Cart</h4>
+            <% if session[:cart].empty? %>
+	            Cart is Empty
+            <% else %>
+              <%= render partial: 'partials/cart_table' %>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+          </div>
+        </div>
         <li><%= link_to "View Profile", user_path(current_user.id) %></li>
         <li><%= link_to "Edit Account", edit_user_path(current_user.id) %></li>
         <li><%= link_to "Logout", logout_path %></li>
