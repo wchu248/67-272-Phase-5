@@ -17,9 +17,7 @@ class Ability
     else
       # guest action
       can :read, Item
-      can :home, Home
       can :create, User
-      can :create, Customer
     end
   end
 
