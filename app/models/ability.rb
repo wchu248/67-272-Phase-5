@@ -20,6 +20,7 @@ class Ability
         u.id == user.id
       end
       can :read, Item
+      can :create, School
     else
       # guest action
       can :read, Item
