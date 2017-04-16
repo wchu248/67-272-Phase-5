@@ -8050,5 +8050,4 @@ Picker.extend( 'pickadate', DatePicker )
 
 $(document).ready(function() {
   $('select').material_select();
-  $(".dropdown-button").dropdown();
 });
