@@ -21,9 +21,6 @@ class Ability
       end
       can :read, Item
       can :create, School
-      # can add and remove items to the cart
-      can :add_to_cart, Item
-      can :remove_from_cart, Item
     else
       # guest action
       can :read, Item
