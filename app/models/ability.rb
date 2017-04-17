@@ -25,6 +25,7 @@ class Ability
       # guest action
       can :read, Item
       can :create, User
+      can :create, School
     end
   end
 

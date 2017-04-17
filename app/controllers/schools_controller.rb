@@ -1,6 +1,5 @@
 class SchoolsController < ApplicationController
 
-  before_action :check_login
   before_action :set_school, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
@@ -25,7 +24,11 @@ class SchoolsController < ApplicationController
       if can? :read, @school
         redirect_to school_path(@school), notice: "Successfully added #{@school.name} to our system."
       else
-        redirect_to user_path(current_user), notice: "Successfully added #{@school.name} to our system."
+        if current_user.nil?
+          redirect_to home_path, notice: "Successfully added #{@school.name} to our system."
+        else
+          redirect_to user_path(current_user), notice: "Successfully added #{@school.name} to our system."
+        end
       end
     else
       render action: 'new'
