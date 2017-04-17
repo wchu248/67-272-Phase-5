@@ -1,6 +1,4 @@
-<% if flash[:alert] %>
-  <div class="alert"><%= flash[:alert] %></div>
-<% else%>
+<% unless flash[:error] %>
   <br><br>
 <% end %>
 <h5>Please use your email/username and password to login to our system.</h5>

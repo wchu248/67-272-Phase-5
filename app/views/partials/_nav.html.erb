@@ -2,9 +2,9 @@
   <div class="top-bar">
     <a class="brand-logo" <%= link_to "Alex & Mark's Chess Store", home_path %> </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <% if logged_in? && current_user.role?(:customer) %>
+      <% if logged_in? && (current_user.role?(:customer) || current_user.role?(:admin)) %>
         <li><%= link_to "Browse Items", items_path %></li>
-        <li><%= link_to "Add a School", new_school_path %></li>
+        <li><%= link_to "Add School", new_school_path %></li>
         <li><a href="#cart_modal">Cart (<%= session[:cart].length %>)</a></li>
         <div id="cart_modal" class="modal">
           <div class="modal-content">

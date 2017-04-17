@@ -42,7 +42,7 @@ class SchoolsController < ApplicationController
 
   def destroy
     if !@school.is_destroyable?
-      flash[:alert] = "Could not remove #{@school.name}."
+      flash[:error] = "Could not remove #{@school.name}."
       redirect_to :back
     else
       @item.destroy

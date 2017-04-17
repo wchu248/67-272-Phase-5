@@ -8051,4 +8051,5 @@ Picker.extend( 'pickadate', DatePicker )
 $(document).ready(function() {
   $('select').material_select();
   $('.modal').modal();
+  $(".button-collapse").sideNav();
 });

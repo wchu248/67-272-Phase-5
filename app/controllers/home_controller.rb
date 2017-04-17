@@ -14,7 +14,7 @@ class HomeController < ApplicationController
 
   def cart
     if current_user.nil? or current_user.role?(:shipper) or current_user.role?(:manager)
-      flash[:alert] = "You are not authorized to take this action"
+      flash[:error] = "You are not authorized to take this action"
       redirect_to home_path
     end
   end
