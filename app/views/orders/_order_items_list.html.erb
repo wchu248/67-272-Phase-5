@@ -1,0 +1,5 @@
+<p><u><b>Order Items:</b></u><br>
+<% for i in @order_items %>
+  <li><%= link_to i.item.name, item_path(i.item) %> x (<%= i.quantity%>) : <%= number_to_currency(i.subtotal) %></li>
+<% end %>
+</p>

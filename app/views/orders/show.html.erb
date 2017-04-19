@@ -13,5 +13,5 @@ Order #<%= @order.id %> | Ordered on: <%= @order.date.strftime("%b. %-d, %Y") %>
 </div>
 
 <div id="order-items-list">
-
+  <%= render partial: 'order_items_list' %>
 </div>
