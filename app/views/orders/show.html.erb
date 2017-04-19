@@ -1,0 +1,17 @@
+<p><h3>Order Details</h3>
+Order #<%= @order.id %> | Ordered on: <%= @order.date.strftime("%b. %-d, %Y") %> | Shipped on: 
+<% if Order.not_shipped.find_by_id(@order.id) %> 
+  not yet shipped
+<% else %>
+  <%= @order.order_items.to_a.max.shipped_on.strftime("%b. %-d, %Y") %>
+<% end %></p>
+
+<div id="order-info">
+  <%= render partial: 'shipping_address' %>
+  <%= render partial: 'payment_method' %>
+  <%= render partial: 'order_summary' %>
+</div>
+
+<div id="order-items-list">
+
+</div>

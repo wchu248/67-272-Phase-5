@@ -19,7 +19,7 @@
       <tbody>
         <% for order in @user_orders %>
           <tr>
-            <td><%= link_to order.date.strftime("%-m/%-d/%y"), order_path(order) %></td>
+            <td><%= link_to order.date.strftime("%b. %-d, %Y"), order_path(order) %></td>
             <% if logged_in? && !(current_user.role?(:customer) || current_user.role?(:shipper)) %>
               <td><%= link_to order.school.name, school_path(order.school) %> </td>
             <% else %>

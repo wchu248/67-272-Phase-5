@@ -1,0 +1,8 @@
+<p><u><b>Shipping Address:</b></u><br>
+<%= @order.school.name %><br>
+<%= @order.school.street_1 %><br>
+<% unless @order.school.street_2.nil? %>
+  <%= @order.school.street_2 %><br>
+<% end %>
+<%= @order.school.city %>, <%= @order.school.state %> <%= @order.school.zip %><br>
+United States</p>

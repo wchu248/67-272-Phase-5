@@ -1,0 +1,6 @@
+<p><u><b>Payment Method:</b></u><br>
+<% unless @order.payment_receipt.nil? %>
+  <%= @order.credit_card_type %> **** <%= @order.credit_card_number[-4..-1] %>
+<% else %>
+  Not yet paid (need to add button to pay here)
+<% end %></p>

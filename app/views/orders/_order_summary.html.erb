@@ -1,0 +1,5 @@
+<p><u><b>Order Summary:</b></u><br>
+Item(s) Subtotal: <%= number_to_currency(@order.grand_total - @order.shipping_costs) %><br>
+Shipping & Handling: <%= number_to_currency(@order.shipping_costs) %><br>
+Total Weight: <%= @order.total_weight.round(2) %> lbs.<br>
+<b>Grand Total:</b> <%= number_to_currency(@order.grand_total) %></p>
