@@ -5,8 +5,10 @@
 <em>A valued Chess Store <%= current_user.role %> since <%= Date.current.year %>.</em>
 <br><br>
 
-<h5>Orders</h5>
-<%= render partial: 'order_table'%>
+<% unless current_user.role?(:shipper) %>
+  <h5>Orders</h5>
+  <%= render partial: 'order_table'%>
+<% end %>
 
 <br>
 <a class="waves-effect waves-teal btn" <%= link_to "Edit Info", edit_user_path(current_user) %> </a>

@@ -2,16 +2,18 @@
   <div class="top-bar">
     <a class="brand-logo" <%= link_to "Alex & Mark's Chess Store", home_path %> </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <% if logged_in? && (current_user.role?(:customer) || current_user.role?(:admin)) %>
-        <li><%= link_to "Browse Items", items_path %></li>
-        <li><%= link_to "Add School", new_school_path %></li>
-        <!-- <li>(This should be a cart thing)</li> -->
-        <li><%= link_to "View Profile", user_path(current_user.id) %></li>
-        <li><%= link_to "Edit Account", edit_user_path(current_user.id) %></li>
-        <li><%= link_to "Logout", logout_path %></li>
+      <li><%= link_to "Browse Items", items_path %></li>
+      <% if logged_in? %>
+        <% if current_user.role?(:customer) || current_user.role?(:admin) %>
+          <li><%= link_to "Add School", new_school_path %></li>
+          <!-- <li>(This should be a cart thing)</li> -->
+        <% else %>
+          <li><%= link_to "View Profile", user_path(current_user.id) %></li>
+          <li><%= link_to "Edit Account", edit_user_path(current_user.id) %></li>
+          <li><%= link_to "Logout", logout_path %></li>
+        <% end %>
       <% elsif !logged_in? %>
         <li><%= link_to "Add School", new_school_path %></li>
-        <li><%= link_to "Browse Items", items_path %></li>
         <li> <%= link_to "Create Account", new_user_path %>
         <li> <%= link_to "Login", login_path %> </li>
       <% end%>  

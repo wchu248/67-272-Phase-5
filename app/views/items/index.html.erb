@@ -1,5 +1,5 @@
 <h3>Available Items</h3>
-<% unless !logged_in? || current_user.role?(:customer)%>
+<% if logged_in? && (current_user.role?(:manager) || current_user.role?(:admin))%>
   <a class="waves-effect waves-light btn" <%= link_to "Add a New Item", new_item_path %> </a>
 <% end %>
 

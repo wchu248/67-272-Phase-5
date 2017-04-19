@@ -48,21 +48,21 @@
     		<%= f.text_field :phone %>
 			</div>
 		</div>
+		<div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">lock_outline</i>
+				<%= f.label :password %>
+				<input type="password"<%= f.text_field :password %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s10">
+				<i class="material-icons prefix">lock</i>
+				<%= f.label :password_confirmation %>
+				<input type="password"<%= f.text_field :password_confirmation %>
+			</div>
+		</div>
 		<% unless @user.save %>
-			<div class="row">
-				<div class="input-field col s10">
-					<i class="material-icons prefix">lock_outline</i>
-					<%= f.label :password %>
-					<input type="password"<%= f.text_field :password %>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s10">
-					<i class="material-icons prefix">lock</i>
-					<%= f.label :password_confirmation %>
-					<input type="password"<%= f.text_field :password_confirmation %>
-				</div>
-			</div>
 			<div class="row">
 				<div class="input-field col s10">
 					<i class="material-icons prefix">list</i>
