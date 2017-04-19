@@ -10,8 +10,9 @@
 	<% end %>
 </p>
 <p><b>Category:</b> <%= @item.category.capitalize %></p>
-<p><b>Description:</b> <%= @item.description %></p>
 <p><b>Color:</b> <%= @item.color %></p>
+<p><b>Weight:</b> <%= @item.weight.round(2) %> lbs.</p>
+<p><b>Description:</b> <%= @item.description %></p>
 <% unless !logged_in? || current_user.role?(:customer) %>
 	<p><b>Inventory Level:</b> <%= number_with_delimiter(@item.inventory_level) %></p>
 	<p><b>Reorder Level:</b> <%= number_with_delimiter(@item.reorder_level) %></p>
