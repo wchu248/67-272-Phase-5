@@ -1,0 +1,8 @@
+<% unless @similar_items.empty?%>
+	<p><b>Similar Items:</b></p> 
+		<% for sim_item in @similar_items %>
+			<li><%= link_to sim_item.name, item_path(sim_item) %></li>
+		<% end %>
+<% else %>
+	<p>There are no similar items in the system at this time.</p> 
+<% end %>

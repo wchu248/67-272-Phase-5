@@ -1,60 +1,34 @@
-<a class="waves-effect waves-teal btn" <%= link_to "Back to Items", items_path %> </a>
-<!-- Show the details of the item -->
-<%= image_tag 'img_not_available.png', class: "right" %>
-<h3><%= @item.name %></h3>
-<p><b>Price:</b> 
-	<% if @item.current_price.nil? %>
-		N/A
-	<% else %>
-		<%= "$" + number_with_delimiter(number_with_precision(@item.current_price, precision: 2)) %>
-	<% end %>
-</p>
-<p><b>Category:</b> <%= @item.category.capitalize %></p>
-<p><b>Color:</b> <%= @item.color %></p>
-<p><b>Weight:</b> <%= @item.weight.round(2) %> lbs.</p>
-<p><b>Description:</b> <%= @item.description %></p>
-<% unless !logged_in? || current_user.role?(:customer) %>
-	<p><b>Inventory Level:</b> <%= number_with_delimiter(@item.inventory_level) %></p>
-	<p><b>Reorder Level:</b> <%= number_with_delimiter(@item.reorder_level) %></p>
-	<% if current_user.role?(:admin) || current_user.role?(:manager) %>
-		<% unless @price_history.empty? %>
-			<p><b>Wholesale Price History:</b></p>
-				<% for p_hist in @price_history %>
-					<% if p_hist.category == "wholesale" %>
-						<% if p_hist.end_date.nil? %>
-							<li><%= "From " + p_hist.start_date.strftime("%-m/%-d/%y") + " to today: " + number_to_currency(p_hist.price) %></li>
-						<% else %>
-							<li><%= "From " + p_hist.start_date.strftime("%-m/%-d/%y") + " to " + p_hist.end_date.strftime("%-m/%-d/%y") + ": " + number_to_currency(p_hist.price) %></li>
-						<% end %>
-					<% end %>
-				<% end %>
-			<p><b>Manufacturer Price History:</b></p>
-				<% for p_hist in @price_history %>
-					<% if p_hist.category == "manufacturer" %>
-						<% if p_hist.end_date.nil? %>
-							<li><%= "From " + p_hist.start_date.strftime("%-m/%-d/%y") + " to today: " + number_to_currency(p_hist.price) %></li>
-						<% else %>
-							<li><%= "From " + p_hist.start_date.strftime("%-m/%-d/%y") + " to " + p_hist.end_date.strftime("%-m/%-d/%y") + ": " + number_to_currency(p_hist.price) %></li>
-						<% end %>
-					<% end %>
-				<% end %>
+<div id="item_show">
+	<a class="waves-effect waves-teal btn" <%= link_to "Back to Items", items_path %> </a>
+	<!-- Show the details of the item -->
+	<%= image_tag 'img_not_available.png', class: "right" %>
+	<h3><%= @item.name %></h3>
+	<p><b>Price:</b> 
+		<% if @item.current_price.nil? %>
+			N/A
 		<% else %>
-			<p>There are no prices in the system for this item at this time.
+			<%= "$" + number_with_delimiter(number_with_precision(@item.current_price, precision: 2)) %>
 		<% end %>
+	</p>
+	<p><b>Category:</b> <%= @item.category.capitalize %></p>
+	<p><b>Color:</b> <%= @item.color %></p>
+	<p><b>Weight:</b> <%= @item.weight.round(2) %> lbs.</p>
+	<p><b>Description:</b> <%= @item.description %></p>
+	<div id="levels_and_history">
+		<%= render partial: 'levels_and_history' %>
+	</div>
+	<p></p> <!-- Add a blank line for formatting issues -->
+	<%= render partial: 'similar_items' %>
+	<p></p> <!-- Add a blank line for formatting issues -->
+	<!-- Buttons for editing and deleting the item -->
+	<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
+		<a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(@item) %> </a>
+		<a class="waves-effect waves-red btn tooltipped" data-position="top" data-delay="10" data-tooltip="Are you sure?" <%= link_to "Delete", @item, method: :delete %> </a>
 	<% end %>
-<% end %>
-<p></p> <!-- Add a blank line for formatting issues -->
-<% unless @similar_items.empty?%>
-	<p><b>Similar Items:</b></p> 
-		<% for sim_item in @similar_items %>
-			<li><%= link_to sim_item.name, item_path(sim_item) %></li>
-		<% end %>
-<% else %>
-	<p>There are no similar items in the system at this time.</p> 
-<% end %>
-<p></p> <!-- Add a blank line for formatting issues -->
-<!-- Buttons for editing and deleting the item -->
-<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
-	<a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(@item) %> </a>
-	<a class="waves-effect waves-red btn tooltipped" data-position="top" data-delay="10" data-tooltip="Are you sure?" <%= link_to "Delete", @item, method: :delete %> </a>
-<% end %>
+</div>
+<div id="new_price">
+	<u><h5>Options:</h5></u>
+	<%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', class: 'button tiny radius', remote: true) do %>
+		Change Price
+	<% end %>
+</div>

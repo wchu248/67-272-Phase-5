@@ -1,0 +1,37 @@
+<%= simple_form_for @item_price, remote: true do |f| %>
+
+	<!-- Display error messages, if any -->
+	<% if @item_price.errors.any? %>
+		<div id="error_explanation">
+			<h6><%= pluralize(@item_price.errors.count, "error") %> prohibited this item from being saved:</h6>
+			<% @item_price.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</div>
+	<% end %>
+
+	<!-- Form for creating a new item price -->
+	<%= f.input :item_id, as: :hidden, input_html: { value: params[:item_id] } %>
+	<div class="row">
+		<div class="input-field col s7">
+			<i class="material-icons prefix">attach_money</i>
+			<%= f.label :price %>
+			<%= f.number_field :price %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="input-field col s10">
+			<i class="material-icons prefix">list</i>
+			<%= f.label :category %>
+			<%= f.text_field :category %>
+		</div>
+	</div>
+	<div class ="row">
+		<div class="input-field col s7">
+			<button class="btn waves-effect waves-light">
+				<i class="material-icons right">send</i>
+				<%= f.submit %>
+			</button>
+		</div>
+	</div>
+<% end %>

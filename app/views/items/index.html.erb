@@ -1,7 +1,8 @@
-<h3>Available Items</h3>
+<p><h3>Available Items</h3>
 <% if logged_in? && (current_user.role?(:manager) || current_user.role?(:admin))%>
   <a class="waves-effect waves-light btn" <%= link_to "Add a New Item", new_item_path %> </a>
 <% end %>
+</p>
 
 <% unless @boards.empty? && @pieces.empty? && @clocks.empty? && @supplies.empty? && @inactive_items.empty? %>
   <div class="row">
