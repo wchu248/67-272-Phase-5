@@ -33,5 +33,10 @@
 				<%= f.submit %>
 			</button>
 		</div>
+		<div class="input-field col s4">
+			<button class="btn waves-effect waves-light white-text">
+				<%= link_to 'Cancel', item_path(params[:item_id]) %>
+			</button>
+		</div>
 	</div>
 <% end %>
