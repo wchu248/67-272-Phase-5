@@ -10,9 +10,7 @@
 	<p><b>Color:</b> <%= @item.color %></p>
 	<p><b>Weight:</b> <%= @item.weight.round(2) %> lbs.</p>
 	<p><b>Description:</b> <%= @item.description %></p>
-	<div id="levels_and_history">
-		<%= render partial: 'levels_and_history' %>
-	</div>
+	<%= render partial: 'levels_and_history' %>
 	<p></p> <!-- Add a blank line for formatting issues -->
 	<%= render partial: 'similar_items' %>
 	<p></p> <!-- Add a blank line for formatting issues -->
