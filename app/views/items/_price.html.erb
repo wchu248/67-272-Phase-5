@@ -1,0 +1,7 @@
+<p><b>Price:</b> 
+  <% if @item.current_price.nil? %>
+    N/A
+  <% else %>
+    <%= "$" + number_with_delimiter(number_with_precision(@item.current_price, precision: 2)) %>
+  <% end %>
+</p>

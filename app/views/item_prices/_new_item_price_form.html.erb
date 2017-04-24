@@ -23,13 +23,12 @@
 		<div class="input-field col s10">
 			<i class="material-icons prefix">list</i>
 			<%= f.label :category %>
-			<%= f.text_field :category %>
+			<%= f.select :category, as: :check_boxes %>
 		</div>
 	</div>
 	<div class ="row">
 		<div class="input-field col s7">
 			<button class="btn waves-effect waves-light">
-				<i class="material-icons right">send</i>
 				<%= f.submit %>
 			</button>
 		</div>

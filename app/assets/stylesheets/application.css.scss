@@ -224,9 +224,13 @@ footer {
   float: left;
   position: left;
   width: 50%;
+  padding-right: 1em;
 }
 
 #new_price {
   float: right;
   width: 50%;
+  padding: 1em;
+  border: 1px solid black;
+  border-style: dotted;
 }

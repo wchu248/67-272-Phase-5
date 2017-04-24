@@ -13,14 +13,13 @@ class ItemPricesController < ApplicationController
     if @item_price.save
       respond_to do |format|
         @item = @item_price.item
-        format.html { redirect_to @item, notice: "Changed the price of #{@item.name}" }
+        format.html { redirect_to @item, notice: "Changed the price of #{@item.name}." }
         @price_history = @item_price.item.item_prices.chronological.to_a
         @similar_items = Item.for_category(@item_price.item.category).active.alphabetical.to_a - [@item]
         format.js
       end
     else
       render action: 'new'
-      format.js
     end
   end
 

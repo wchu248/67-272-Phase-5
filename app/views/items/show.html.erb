@@ -3,13 +3,9 @@
 	<!-- Show the details of the item -->
 	<%= image_tag 'img_not_available.png', class: "right" %>
 	<h3><%= @item.name %></h3>
-	<p><b>Price:</b> 
-		<% if @item.current_price.nil? %>
-			N/A
-		<% else %>
-			<%= "$" + number_with_delimiter(number_with_precision(@item.current_price, precision: 2)) %>
-		<% end %>
-	</p>
+	<div id="price">
+		<%= render partial: 'price' %>
+	</div>
 	<p><b>Category:</b> <%= @item.category.capitalize %></p>
 	<p><b>Color:</b> <%= @item.color %></p>
 	<p><b>Weight:</b> <%= @item.weight.round(2) %> lbs.</p>
