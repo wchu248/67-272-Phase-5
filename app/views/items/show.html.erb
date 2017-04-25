@@ -1,4 +1,6 @@
-<div id="item_show">
+<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
+	<div id="item_show">
+<% end %>
 	<a class="waves-effect waves-teal btn" <%= link_to "Back to Items", items_path %> </a>
 	<!-- Show the details of the item -->
 	<%= image_tag 'img_not_available.png', class: "right" %>
@@ -19,10 +21,12 @@
 		<a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(@item) %> </a>
 		<a class="waves-effect waves-red btn tooltipped" data-position="top" data-delay="10" data-tooltip="Are you sure?" <%= link_to "Delete", @item, method: :delete %> </a>
 	<% end %>
-</div>
-<div id="new_price">
-	<u><h5>Options:</h5></u>
-	<%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', remote: true) do %>
-		Change Price
-	<% end %>
-</div>
+<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
+	</div>
+	<div id="new_price">
+		<u><h5>Options:</h5></u>
+		<%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', remote: true) do %>
+			Change Price
+		<% end %>
+	</div>
+<% end %>
