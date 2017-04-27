@@ -8053,3 +8053,9 @@ $(document).ready(function() {
   $('.modal').modal();
   $(".button-collapse").sideNav();
 });
+
+$(function() {
+   $('.notice').fadeIn('normal', function() {
+      $(this).delay(3700).fadeOut();
+   });
+});

@@ -1,8 +1,6 @@
 class ItemsController < ApplicationController
 
-  include ChessStoreHelpers::Cart
-
-  before_action :set_item, only: [:show, :edit, :update, :destroy, :add_to_cart]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     # get info on active items for the big three...
@@ -49,19 +47,6 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     redirect_to items_path, notice: "Successfully removed #{@item.name} from the system."
-  end
-
-  def add_to_cart
-    add_item_to_cart(@item.id)
-    flash[:notice] = "Added 1 #{@item.name} to the cart"
-    redirect_to :back
-  end
-
-  def remove_from_cart
-    @item = Item.find(params[:id])
-    remove_item_from_cart(@item.id)
-    flash[:notice] = "Removed all #{@item.name} from the cart"
-    redirect_to :back
   end
 
   private
