@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def home
     if logged_in? && (current_user.role?(:shipper) || current_user.role?(:admin))
-      @not_shipped_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
-      @all_orders = Order.all.chronological.paginate(:page => params[:page]).per_page(10)
+      @not_shipped_orders = Order.not_shipped.chronological
+      @all_orders = Order.all.chronological
     end
     @items_to_reorder = Item.need_reorder.alphabetical.to_a
   end
@@ -21,6 +21,17 @@ class HomeController < ApplicationController
       flash[:error] = "You are not authorized to take this action"
       redirect_to home_path
     end
+  end
+
+  def toggle
+    @oi = OrderItem.find(params[:id])
+    puts "hello"
+    if @oi.shipped_on.nil?
+      @oi.shipped_on = Date.current
+      flash[:notice] = "Marked #{@oi.quantity} #{@oi.item.name.pluralize(@oi.quantity)} as shipped"
+    end
+    @oi.save!
+    @not_shipped_orders = Order.not_shipped.chronological
   end
 
 end

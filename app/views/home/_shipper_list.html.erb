@@ -1,26 +1,34 @@
-<h4>Unshipped Orders:</h4>
-<% unless @not_shipped_orders.empty? %>
-  <table class="bordered highlight centered responsive-table">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>User</th>
-        <th>School</th>
-        <th></th>
-      </tr>
-    </thead>
-    
-    <tbody>
-      <% for order in @not_shipped_orders %>
-      <tr>
-        <td><%= link_to order.date.strftime("%b. %-d, %Y"), order_path(order) %></td>
-        <td><%= order.user.proper_name %></td>
-        <td><%= order.school.name %></td>
-        <td>alsdfasfd</td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  All orders have been shipped! Good job!
-<% end %>
+<u><h4>Unshipped Orders:</h4></u>
+<div id="unshipped_orders">
+  <% unless @not_shipped_orders.empty? %>
+    <% for order in @not_shipped_orders %>
+      <h5>Order #<%= order.id %>'s Unshipped Order Items</h5>
+      <table class="bordered highlight centered responsive-table">
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for oi in order.order_items %>
+            <% if oi.shipped_on.nil? %>
+              <tr>
+                <td><%= oi.item.name %></td>
+                <td><%= oi.quantity %></td>
+                <td>
+                  <%= link_to(toggle_path(oi), id: 'mark_shipped_button', class: 'button tiny radius', remote: true) do %>
+                    Mark as Shipped
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% else %>
+    All orders have been shipped! Good job!
+  <% end %>
+</div>
