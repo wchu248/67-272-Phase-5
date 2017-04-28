@@ -7,8 +7,6 @@
 			<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
 				<th>Inventory</th>
 				<th></th>
-			<% elsif logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
-				<th></th>
 			<% end %>
 		</tr>
 	</thead>

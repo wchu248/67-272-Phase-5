@@ -1,5 +1,5 @@
 <div class="row">
-	<%= simple_form_for(@item) do |f| %>
+	<%= simple_form_for @item, :html => { :multipart => true } do |f| %>
 
 		<!-- Display errors, if any -->
 		<% if @item.errors.any? %>
@@ -68,6 +68,12 @@
 		<div class="row">
 			<div class="input-field col s10">
 				<%= f.input :active, as: :boolean %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s10">
+				<%= f.label :photo %><br><br>
+				<%= f.file_field :photo %>
 			</div>
 		</div>
 		<div class ="row">

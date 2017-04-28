@@ -1,32 +1,35 @@
-<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
-	<div id="item_show">
-<% end %>
-	<a class="waves-effect waves-teal btn" <%= link_to "Back to Items", items_path %> </a>
-	<!-- Show the details of the item -->
+<a class="waves-effect waves-teal btn" <%= link_to "Back to Items", items_path %> </a>
+<!-- Show the details of the item -->
+<% unless @item.photo_url.nil? %>
+	<div id="img_resize">
+		<%= image_tag @item.photo_url %>
+	</div>
+<% else %>
 	<%= image_tag 'img_not_available.png', class: "right" %>
-	<h3><%= @item.name %></h3>
-	<div id="price">
-		<%= render partial: 'price' %>
-	</div>
-	<p><b>Category:</b> <%= @item.category.capitalize %></p>
-	<p><b>Color:</b> <%= @item.color %></p>
-	<p><b>Weight:</b> <%= @item.weight.round(2) %> lbs.</p>
-	<p><b>Description:</b> <%= @item.description %></p>
-	<%= render partial: 'levels_and_history' %>
-	<p></p> <!-- Add a blank line for formatting issues -->
-	<%= render partial: 'similar_items' %>
-	<p></p> <!-- Add a blank line for formatting issues -->
-	<!-- Buttons for editing and deleting the item -->
-	<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
-		<a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(@item) %> </a>
-		<a class="waves-effect waves-red btn tooltipped" data-position="top" data-delay="10" data-tooltip="Are you sure?" <%= link_to "Delete", @item, method: :delete %> </a>
-	<% end %>
+<% end %>
+<h3><%= @item.name %></h3>
+<div id="price">
+	<%= render partial: 'price' %>
+</div>
+<p><b>Category:</b> <%= @item.category.capitalize %></p>
+<p><b>Color:</b> <%= @item.color %></p>
+<p><b>Weight:</b> <%= @item.weight.round(2) %> lbs.</p>
+<p><b>Description:</b> <%= @item.description %></p>
+<%= render partial: 'levels_and_history' %>
+<p></p> <!-- Add a blank line for formatting issues -->
+<%= render partial: 'similar_items' %>
+<p></p> <!-- Add a blank line for formatting issues -->
+<!-- Buttons for editing and deleting the item -->
 <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
-	</div>
-	<div id="new_price">
+	<a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(@item) %> </a>
+	<a class="waves-effect waves-red btn tooltipped" data-position="top" data-delay="10" data-tooltip="Are you sure?" <%= link_to "Delete", @item, method: :delete %> </a>
+<% end %>
+<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
+	<!-- <div id="new_price">
 		<u><h5>Options:</h5></u>
 		<%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', remote: true) do %>
 			Change Price
 		<% end %>
-	</div>
+	</div> -->
+	change price thing here
 <% end %>

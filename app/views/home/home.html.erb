@@ -13,9 +13,10 @@
 <% elsif current_user.role?(:manager) %>
 	<%= render partial: 'reorder_list' %>
 <% elsif current_user.role?(:shipper) %>
-	<u><h4>Unshipped Order Items:</h4></u>
+	<h4>Unshipped Order Items:</h4>
 	<%= render partial: 'shipper_list' %>
 <% elsif current_user.role?(:admin) %>
 	<%= render partial: 'reorder_list' %>
+	<h4>Unshipped Order Items:</h4>
 	<%= render partial: 'shipper_list' %>
 <% end %>

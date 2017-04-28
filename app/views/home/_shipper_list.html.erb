@@ -1,38 +1,39 @@
 <div id="unshipped_orders">
   <% unless @not_shipped_orders.empty? %>
-    <% for order in @not_shipped_orders %>
-      <table class="bordered highlight centered responsive-table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Item Name</th>
-            <th>Quantity</th>
-            <th>Shipped On</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for order in @not_shipped_orders %>
           <% for oi in order.order_items %>
             <tr>
-              <td><%= order.id %></td>
-              <td><%= oi.item.name %></td>
-              <td><%= oi.quantity %></td>
               <% if oi.shipped_on.nil? %>
-                <td>---</td>
+                <% if current_user.role?(:shipped) %>
+                  <td><%= order.id %></td>
+                   <td><%= oi.item.name %></td>
+                <% else %>
+                  <!-- the only other person seeing this will be an admin -->
+                  <td><%= link_to order.id, order_path(order) %></td>
+                  <td><%= link_to oi.item.name, item_path(oi.item) %></td>
+                <% end %>
+                <td><%= oi.quantity %></td>
                 <td>
                   <%= link_to(toggle_path(oi), id: 'mark_shipped_button', class: 'button tiny radius', remote: true) do %>
                     Mark as Shipped
                   <% end %>
                 </td>
-              <% else %>
-                <td><%= oi.shipped_on.strftime("%b. %-d, %Y") %></td>
-                <td>Shipped!</td>
               <% end %>
             </tr>
           <% end %>
-        </tbody>
-      </table>
-    <% end %>
+        <% end %>
+      </tbody>
+    </table>
   <% else %>
     All orders have been shipped! Good job!
   <% end %>

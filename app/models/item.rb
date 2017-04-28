@@ -1,5 +1,8 @@
 class Item < ActiveRecord::Base
 
+  # For adding photos to an item
+  mount_uploader :photo, PhotoUploader
+
   # List of allowable categories
   CATEGORIES = [['Boards','boards'],['Pieces','pieces'],['Clocks','clocks'],['Supplies','supplies']]
   
