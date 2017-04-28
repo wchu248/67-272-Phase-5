@@ -8050,12 +8050,4 @@ Picker.extend( 'pickadate', DatePicker )
 
 $(document).ready(function() {
   $('select').material_select();
-  $('.modal').modal();
-  $(".button-collapse").sideNav();
-});
-
-$(function() {
-   $('.notice').fadeIn('normal', function() {
-      $(this).delay(3700).fadeOut();
-   });
 });

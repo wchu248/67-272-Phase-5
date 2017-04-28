@@ -1,0 +1,26 @@
+<h4>Unshipped Orders:</h4>
+<% unless @not_shipped_orders.empty? %>
+  <table class="bordered highlight centered responsive-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>User</th>
+        <th>School</th>
+        <th></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% for order in @not_shipped_orders %>
+      <tr>
+        <td><%= link_to order.date.strftime("%b. %-d, %Y"), order_path(order) %></td>
+        <td><%= order.user.proper_name %></td>
+        <td><%= order.school.name %></td>
+        <td>alsdfasfd</td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  All orders have been shipped! Good job!
+<% end %>
