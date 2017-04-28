@@ -1,4 +1,7 @@
 <h3><%= @user.proper_name %></h3>
+<% if !@user.active %>
+  <h5><b>INACTIVE</b></h5>
+<% end %>
 <p><b>Username: </b><%= @user.username %></p>
 <p><b>Phone: </b><%= @reformatted_phone %></p>
 <p><b>Email: </b><%= mail_to(@user.email, @user.email, encode: "javascript") %></p>
