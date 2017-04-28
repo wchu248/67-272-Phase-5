@@ -4,7 +4,10 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.all.alphabetical.paginate(page: params[:page]).per_page(10)
+    @active_users = User.active.alphabetical.paginate(page: params[:page]).per_page(10)
+    @inactive_users = User.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
+    @employees = User.employees.alphabetical.paginate(page: params[:page]).per_page(10)
+    @customers = User.customers.alphabetical.paginate(page: params[:page]).per_page(10)
   end
 
   def new
@@ -20,6 +23,7 @@ class UsersController < ApplicationController
 
   def show
     @user_orders = @user.orders.all.chronological.paginate(page: params[:page]).per_page(10)
+    @reformatted_phone = "(#{@user.phone[0..2]}) #{@user.phone[3..5]}-#{@user.phone[6..9]}"
   end
 
   def create
