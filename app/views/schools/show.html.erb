@@ -1,4 +1,7 @@
 <h3><%= @school.name %></h3>
+<% if !@school.active %>
+  <h5><b>INACTIVE</b></h5>
+<% end %>
 <p><b>Address:</b><br>
 <%= @school.street_1 %><br>
 <% unless @school.street_2.nil? %>
@@ -20,3 +23,7 @@ United States</p>
 <% else %>
   N/A
 <% end %><p>
+
+<br>
+<a class="waves-effect waves-teal btn" <%= link_to "Edit School", edit_school_path(@school) %> </a>
+<a class="waves-effect waves-red btn tooltipped" data-position="top" data-delay="10" data-tooltip="Are you sure?" <%= link_to "Delete", @item, method: :delete %> </a>

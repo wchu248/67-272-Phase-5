@@ -1,0 +1,32 @@
+<p><h3>Viewing Schools</h3>
+<a class="waves-effect waves-light btn" <%= link_to "Add a New School", new_school_path %> </a>
+</p>
+
+<!-- Display a table showing information of all the boards -->
+<table class="bordered highlight centered responsive-table">
+	<thead>
+		<tr>
+			<th>Name</th>
+      <th>City, State</th>
+      <th>Active</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% for school in @all_schools %>
+      <tr>
+        <td><%= link_to school.name, school_path(school) %></td>
+        <td><%= school.city %>, <%= school.state %></td>
+        <td>
+          <% if school.active? %>
+            Y
+          <% else %>
+            N
+          <% end %>
+        </td>
+      </tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= will_paginate @all_schools %>

@@ -4,8 +4,7 @@ class SchoolsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @active_schools = School.active.alphabetical.paginate(:page => params[:page]).per_page(10)
-    @inactive_schools = School.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
+    @all_schools = School.all.alphabetical.paginate(:page => params[:page]).per_page(10)
   end
 
   def edit
@@ -44,11 +43,13 @@ class SchoolsController < ApplicationController
   end
 
   def destroy
-    if !@school.is_destroyable?
-      flash[:error] = "Could not remove #{@school.name}."
-      redirect_to :back
+    if !@school.destroyable
+      flash[:error] = "Could not remove #{@school.name}. Set as inactive."
+      @school.active = false
+      @school.save!
+      redirect_to school_path(@school)
     else
-      @item.destroy
+      @school.destroy
       redirect_to schools_path, notice: "Successfully removed #{@school.name} from the system."
     end
   end

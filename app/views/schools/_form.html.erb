@@ -63,6 +63,13 @@
     		<%= f.number_field :max_grade %>
 			</div>
 		</div>
+		<% if current_user.role?(:admin) %>
+			<div class="row">
+				<div class="input-field col s10">
+					<%= f.input :active, as: :boolean %>
+				</div>
+			</div>
+		<% end %>
 		<div class ="row">
 			<div class="input-field col s10">
 				<button class="btn waves-effect waves-light">
