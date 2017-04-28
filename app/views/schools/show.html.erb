@@ -1,1 +1,22 @@
-showing <%= @school.name %>
+<h3><%= @school.name %></h3>
+<p><b>Address:</b><br>
+<%= @school.street_1 %><br>
+<% unless @school.street_2.nil? %>
+  <%= @school.street_2 %><br>
+<% end %>
+<%= @school.city %>, <%= @school.state %> <%= @school.zip %><br>
+United States</p>
+
+<p><b>Mininum Grade: </b>
+<% unless @school.min_grade.nil?%>
+  <%= @school.min_grade %>
+<% else %>
+  N/A
+<% end %><p>
+
+<p><b>Maximum Grade: </b>
+<% unless @school.max_grade.nil?%>
+  <%= @school.max_grade %>
+<% else %>
+  N/A
+<% end %><p>

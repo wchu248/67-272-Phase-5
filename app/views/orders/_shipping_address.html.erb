@@ -1,5 +1,5 @@
 <p><u><b>Shipping Address:</b></u><br>
-<%= @order.school.name %><br>
+<%= link_to @order.school.name, school_path(@order.school) %><br>
 <%= @order.school.street_1 %><br>
 <% unless @order.school.street_2.nil? %>
   <%= @order.school.street_2 %><br>
