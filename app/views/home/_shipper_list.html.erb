@@ -1,28 +1,34 @@
 <div id="unshipped_orders">
   <% unless @not_shipped_orders.empty? %>
     <% for order in @not_shipped_orders %>
-      <h5>Order #<%= order.id %>'s Unshipped Order Items</h5>
       <table class="bordered highlight centered responsive-table">
         <thead>
           <tr>
+            <th>Order ID</th>
             <th>Item Name</th>
             <th>Quantity</th>
+            <th>Shipped On</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <% for oi in order.order_items %>
-            <% if oi.shipped_on.nil? %>
-              <tr>
-                <td><%= oi.item.name %></td>
-                <td><%= oi.quantity %></td>
+            <tr>
+              <td><%= order.id %></td>
+              <td><%= oi.item.name %></td>
+              <td><%= oi.quantity %></td>
+              <% if oi.shipped_on.nil? %>
+                <td>---</td>
                 <td>
                   <%= link_to(toggle_path(oi), id: 'mark_shipped_button', class: 'button tiny radius', remote: true) do %>
                     Mark as Shipped
                   <% end %>
                 </td>
-              </tr>
-            <% end %>
+              <% else %>
+                <td><%= oi.shipped_on.strftime("%b. %-d, %Y") %></td>
+                <td>Shipped!</td>
+              <% end %>
+            </tr>
           <% end %>
         </tbody>
       </table>
