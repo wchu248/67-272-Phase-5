@@ -28,7 +28,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      if current_user.role?(:customer)
+      if !logged_in?
+        session[:user_id] = @user.id
         redirect_to home_path, notice: "Welcome, #{@user.first_name}. Thank you for signing up!"
       else
         redirect_to :back, notice: "Successfully created #{@user.proper_name}."
