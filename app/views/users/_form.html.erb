@@ -75,7 +75,7 @@
 				</div>
 			</div>
 		<% end %>
-		<% if current_user.role?(:manager) || current_user.role?(:admin) %>
+		<% if logged_in? && (current_user.role?(:manager) || current_user.role?(:admin)) %>
 			<div class="row">
 				<div class="input-field col s10">
 					<%= f.input :active, as: :boolean %>

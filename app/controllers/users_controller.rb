@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     @user = User.new
     unless logged_in? && (current_user.role?(:manager) || current_user.role?(:admin))
       session[:user_id] = @user.id
-      create_cart
     end
   end
 
