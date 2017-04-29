@@ -43,11 +43,11 @@ class SchoolsController < ApplicationController
   end
 
   def destroy
-    if !@school.destroyable
+    if !@school.is_destroyable?
       flash[:error] = "Could not remove #{@school.name}. Set as inactive."
       @school.active = false
       @school.save!
-      redirect_to school_path(@school)
+      redirect_to :back
     else
       @school.destroy
       redirect_to schools_path, notice: "Successfully removed #{@school.name} from the system."

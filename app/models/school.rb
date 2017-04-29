@@ -32,11 +32,12 @@ class School < ActiveRecord::Base
   # Other methods
   attr_reader :destroyable
   
-  private
   def is_destroyable?
     @destroyable = self.orders.empty?
   end
   
+  private
+
   def make_inactive_if_trying_to_destroy
     if !@destroyable.nil? && @destroyable == false
       self.update_attribute(:active, false)
