@@ -1,0 +1,24 @@
+<p><h3>Orders</h3></p>
+
+<div class="row">
+  <div class="col s10">
+    <ul class="tabs tabs-fixed-width">
+      <li class="tab col s3"><a href="#unshipped">Unshipped</a></li>
+      <li class="tab col s3"><a href="#all">All</a></li>
+    </ul>
+  </div>
+  <div id="unshipped" class="col s10">
+    <% unless @not_shipped_orders.empty? %>
+      <%= render partial: 'not_shipped_orders' %>
+    <% else %>
+      All orders have been shipped! Good job!
+    <% end %>
+  </div>
+  <div id="all" class="col s10">
+    <% unless @all_orders.empty? %>
+      <%= render partial: "all_orders" %>
+    <% else %>
+      <p>There are no orders in the system at this time.</p>
+    <% end %>
+  </div>
+</div>

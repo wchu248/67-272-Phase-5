@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   def index
     if logged_in? && !current_user.role?(:customer)
       @not_shipped_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
-      @not_paid_orders = Order.paid.chronological.paginate(:page => params[:page]).per_page(10)
       @all_orders = Order.all.chronological.paginate(:page => params[:page]).per_page(10)
     else
       @not_shipped_orders = current_user.orders.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)

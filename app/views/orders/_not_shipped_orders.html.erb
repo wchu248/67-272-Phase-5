@@ -1,0 +1,24 @@
+<!-- Display a table showing information of all the boards -->
+<table class="bordered highlight centered responsive-table">
+	<thead>
+		<tr>
+			<th>Order ID</th>
+      <th>Date</th>
+      <th>School</th>
+			<th>Amount</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% for order in @not_shipped_orders %>
+      <tr>
+        <td><%= link_to order.id, order_path(order) %></td>
+        <td><%= order.date.strftime("%b. %-d, %Y") %></td>
+        <td><%= order.school.name %></td>
+        <td><%= number_to_currency(order.grand_total) %></td>
+      </tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= will_paginate @not_shipped_orders %>
