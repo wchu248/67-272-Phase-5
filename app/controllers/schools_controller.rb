@@ -15,6 +15,7 @@ class SchoolsController < ApplicationController
   end
 
   def show
+    @school_orders = @school.orders.chronological.paginate(:page => params[:page]).per_page(10)
   end
 
   def create
