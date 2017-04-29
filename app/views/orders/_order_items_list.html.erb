@@ -1,9 +1,26 @@
 <p><u><b>Order Items:</b></u><br>
+
 <% unless @order_items.empty? %>
-  <% for i in @order_items %>
-    <li><%= link_to i.item.name, item_path(i.item) %> x (<%= i.quantity%>) : <%= number_to_currency(i.subtotal) %></li>
-  <% end %>
+  <table class="bordered highlight responsive-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for i in @order_items %>
+        <tr>
+          <td><%= link_to i.item.name, item_path(i.item) %>
+          <td><%= i.quantity %></td>
+          <td><%= number_to_currency(i.subtotal) %> </td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
   This order contains no items.
 <% end %>
+
 </p>
