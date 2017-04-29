@@ -32,7 +32,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect_to home_path, notice: "Welcome, #{@user.first_name}. Thank you for signing up!"
       else
-        redirect_to :back, notice: "Successfully created #{@user.proper_name}."
+        redirect_to user_path(@user), notice: "Successfully created #{@user.proper_name}."
       end
     else
       flash[:error] = "This user could not be created."
