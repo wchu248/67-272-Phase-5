@@ -1,32 +1,8 @@
 <div id="levels_and_history">
-	<% unless !logged_in? || current_user.role?(:customer) %>
-		<p><b>Inventory Level:</b> <%= number_with_delimiter(@item.inventory_level) %></p>
-		<p><b>Reorder Level:</b> <%= number_with_delimiter(@item.reorder_level) %></p>
-		<% if current_user.role?(:admin) || current_user.role?(:manager) %>
-			<% unless @price_history.empty? %>
-				<p><b>Wholesale Price History:</b></p>
-					<% for p_hist in @price_history %>
-						<% if p_hist.category == "wholesale" %>
-							<% if p_hist.end_date.nil? %>
-								<li><%= "From " + p_hist.start_date.strftime("%-m/%-d/%y") + " to today: " + number_to_currency(p_hist.price) %></li>
-							<% else %>
-								<li><%= "From " + p_hist.start_date.strftime("%-m/%-d/%y") + " to " + p_hist.end_date.strftime("%-m/%-d/%y") + ": " + number_to_currency(p_hist.price) %></li>
-							<% end %>
-						<% end %>
-					<% end %>
-				<p><b>Manufacturer Price History:</b></p>
-					<% for p_hist in @price_history %>
-						<% if p_hist.category == "manufacturer" %>
-							<% if p_hist.end_date.nil? %>
-								<li><%= "From " + p_hist.start_date.strftime("%-m/%-d/%y") + " to today: " + number_to_currency(p_hist.price) %></li>
-							<% else %>
-								<li><%= "From " + p_hist.start_date.strftime("%-m/%-d/%y") + " to " + p_hist.end_date.strftime("%-m/%-d/%y") + ": " + number_to_currency(p_hist.price) %></li>
-							<% end %>
-						<% end %>
-					<% end %>
-			<% else %>
-				<p>There are no prices in the system for this item at this time.
-			<% end %>
-		<% end %>
+	<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
+		<div class="row">
+			<%= render partial: 'wholesale_price_table' %>
+			<%= render partial: 'manufacturer_price_table' %>
+		</div>
 	<% end %>
 </div>

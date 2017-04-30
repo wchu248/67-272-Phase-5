@@ -1,4 +1,4 @@
-<%= simple_form_for @item_price, remote: true do |f| %>
+<%= simple_form_for @item_price, html: { :class => 'form-horizontal' }, remote: true do |f| %>
 
 	<!-- Display error messages, if any -->
 	<% if @item_price.errors.any? %>
@@ -12,27 +12,19 @@
 
 	<!-- Form for creating a new item price -->
 	<%= f.input :item_id, as: :hidden, input_html: { value: params[:item_id] } %>
+	<%= f.input :category, as: :hidden, input_html: { value: "wholesale" } %>
 	<div class="row">
-		<div class="input-field col s7">
+		<div class="input-field col s6">
 			<i class="material-icons prefix">attach_money</i>
 			<%= f.label :price %>
 			<%= f.number_field :price %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="input-field col s10">
-			<i class="material-icons prefix">list</i>
-			<%= f.label :category, "Category (wholesale/manufacturer)" %>
-			<%= f.text_field :category %>
-		</div>
-	</div>
 	<div class ="row">
-		<div class="input-field col s7">
+		<div class="input-field col s6">
 			<button class="btn waves-effect waves-light">
 				<%= f.submit %>
 			</button>
-		</div>
-		<div class="input-field col s4">
 			<button class="btn waves-effect waves-light white-text">
 				<%= link_to 'Cancel', item_path(params[:item_id]) %>
 			</button>

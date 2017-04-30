@@ -39,7 +39,8 @@ class ItemsControllerTest < ActionController::TestCase
     create_piece_prices_manufacturer
     get :show, id: @basic_pieces
     assert_not_nil assigns(:item)
-    assert_not_nil assigns(:price_history)
+    assert_not_nil assigns(:wholesale_price_history)
+    assert_not_nil assigns(:manufacturer_price_history)
     assert_not_nil assigns(:similar_items)
     assert_response :success
     destroy_piece_prices_manufacturer

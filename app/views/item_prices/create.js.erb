@@ -1,0 +1,5 @@
+$('#new_item_price').remove();
+$('#new_price_link').show();
+$('#price').replaceWith('<%= j render("items/price") %>');
+$('#wholesale_price_table').replaceWith('<%= j render("items/wholesale_price_table") %>');
+$('#manufacturer_price_table').replaceWith('<%= j render("items/manufacturer_price_table") %>');

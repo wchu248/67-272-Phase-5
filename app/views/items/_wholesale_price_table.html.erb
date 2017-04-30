@@ -1,0 +1,30 @@
+<% unless @wholesale_price_history.empty? %>
+  <div id="wholesale_price_table" class="col s6">
+    <p><b>Wholesale Price History:</b></p>
+    <table class="bordered highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for p in @wholesale_price_history %>
+          <tr>
+            <td><%= p.start_date.strftime("%b. %-d, %Y") %></td>
+            <% unless p.end_date.nil? %>
+              <td><%= p.end_date.strftime("%b. %-d, %Y") %></td>
+            <% else %>
+              <td>---</td>
+            <% end %>
+            <td><%= number_to_currency(p.price) %> </td> 
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to(new_item_price_path(item_id: @item.id), id:'new_wholesale_link', remote: true) do %>
+      Add New Price
+    <% end %>
+  </div>
+<% end %>

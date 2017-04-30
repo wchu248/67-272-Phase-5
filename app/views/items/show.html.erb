@@ -15,6 +15,10 @@
 <p><b>Color:</b> <%= @item.color %></p>
 <p><b>Weight:</b> <%= @item.weight.round(2) %> lbs.</p>
 <p><b>Description:</b> <%= @item.description %></p>
+<% unless !logged_in? || current_user.role?(:customer) %>
+	<p><b>Inventory Level:</b> <%= number_with_delimiter(@item.inventory_level) %></p>
+	<p><b>Reorder Level:</b> <%= number_with_delimiter(@item.reorder_level) %></p>
+<% end %>
 <%= render partial: 'levels_and_history' %>
 <p></p> <!-- Add a blank line for formatting issues -->
 <%= render partial: 'similar_items' %>
@@ -31,5 +35,4 @@
 			Change Price
 		<% end %>
 	</div> -->
-	change price thing here
 <% end %>
