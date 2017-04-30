@@ -1,0 +1,9 @@
+<div id="item_levels">
+  <p><b>Inventory Level:</b> <%= number_with_delimiter(@item.inventory_level) %></p>
+  <p><b>Reorder Level:</b> <%= number_with_delimiter(@item.reorder_level) %></p>
+  <% if current_user.role?(:admin) || current_user.role?(:manager) %>
+      <%= link_to(new_purchase_path(item_id: @item.id), id:'new_purchase_link', remote: true) do %>
+        Add New Purchase
+      <% end %>
+  <% end %>
+</div>
