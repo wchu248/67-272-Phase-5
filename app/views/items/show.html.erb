@@ -8,6 +8,9 @@
 	<%= image_tag 'img_not_available.png', class: "right" %>
 <% end %>
 <h3><%= @item.name %></h3>
+<% if !@item.active %>
+  <h5><b>INACTIVE</b></h5>
+<% end %>
 <div id="price">
 	<%= render partial: 'price' %>
 </div>

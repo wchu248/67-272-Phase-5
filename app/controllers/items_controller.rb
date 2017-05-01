@@ -46,8 +46,14 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
-    redirect_to items_path, notice: "Successfully removed #{@item.name} from the system."
+    if !@item.is_destroyable?
+      flash[:error] = "Could not remove #{@item.name}. Set as inactive."
+      @item.remove_unshipped_and_convert_to_inactive
+      redirect_to :back
+    else
+      @item.destroy
+      redirect_to items_path, notice: "Successfully removed #{@item.name} from the system."
+    end
   end
 
   private

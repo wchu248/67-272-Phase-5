@@ -76,7 +76,6 @@ class Item < ActiveRecord::Base
     reorder_level >= inventory_level
   end
 
-  private
   def is_destroyable?
     @destroyable = self.order_items.shipped.empty?
   end
