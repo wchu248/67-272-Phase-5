@@ -3,7 +3,7 @@
 	<!-- Display error messages, if any -->
 	<% if @item_price.errors.any? %>
 		<div id="error_explanation">
-			<h6><%= pluralize(@item_price.errors.count, "error") %> prohibited this item from being saved:</h6>
+			<h6><%= pluralize(@item_price.errors.count, "error") %> prohibited this item price from being saved:</h6>
 			<% @item_price.errors.full_messages.each do |msg| %>
 				<li><%= msg %></li>
 			<% end %>
@@ -27,7 +27,7 @@
 		</div>
 	</div>
 	<div class ="row">
-		<div class="input-field col s6">
+		<div class="input-field col s10">
 			<button class="btn waves-effect waves-light">
 				<%= f.submit %>
 			</button>

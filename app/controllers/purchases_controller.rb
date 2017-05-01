@@ -15,7 +15,7 @@ class PurchasesController < ApplicationController
         format.html {
           redirect_to purchases_path, notice: "Successfully added a purchase for #{@purchase.quantity} #{@purchase.item.name}."
         }
-        @item = @item_price.item
+        @item = @purchase.item
         format.js
       end
     else
