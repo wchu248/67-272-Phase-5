@@ -1,5 +1,7 @@
 <p><h3>Available Items</h3>
-<% if logged_in? && (current_user.role?(:manager) || current_user.role?(:admin))%>
+<% if !logged_in? %>
+  <h5>Please log in to purchase items for your school.</h5>
+<% elsif current_user.role?(:manager) || current_user.role?(:admin) %>
   <a class="waves-effect waves-light btn" <%= link_to "Add a New Item", new_item_path %> </a>
 <% end %>
 </p>
