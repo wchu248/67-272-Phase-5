@@ -16,8 +16,8 @@ class HomeController < ApplicationController
   def privacy
   end
 
-  def cart
-    if current_user.nil? or current_user.role?(:shipper) or current_user.role?(:manager)
+  def view_cart
+    if !logged_in? || current_user.nil? || current_user.role?(:shipper) || current_user.role?(:manager)
       flash[:error] = "You are not authorized to take this action"
       redirect_to home_path
     end

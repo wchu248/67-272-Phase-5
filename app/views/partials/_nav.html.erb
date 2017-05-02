@@ -7,7 +7,7 @@
           <li><%= link_to "Browse Items", items_path %></li>
           <% if current_user.role?(:customer) %>
             <li><%= link_to "Add School", new_school_path %></li>
-            <li>(This should be a cart thing)</li>
+            <li><%= link_to "View Cart", view_cart_path %></li>
           <% end %>
         <% end %>
         <li><%= link_to "View Profile", user_path(current_user.id) %></li>

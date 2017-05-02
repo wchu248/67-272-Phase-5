@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "home/toggle/:id" => "home#toggle", as: :toggle
 
   # cart stuff
+  get "view_cart" => "home#view_cart", as: :view_cart
   get "item/add_to_cart/:id" => "item#add_to_cart", as: :add_to_cart
 
   # Set the root url
