@@ -11,7 +11,11 @@
     <% unless @not_shipped_orders.empty? %>
       <%= render partial: 'not_shipped_orders' %>
     <% else %>
-      All orders have been shipped! Good job!
+      <% if current_user.role?(:customer) %>
+        All of your orders have been shipped. Enjoy!
+      <% else %>
+        All orders have been shipped! Good job!
+      <% end %>
     <% end %>
   </div>
   <div id="all" class="col s10">
