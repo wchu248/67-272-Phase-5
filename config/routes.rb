@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy', as: :logout
   get 'login' => 'sessions#new', as: :login
 
+  # shipper ajax
   get "home/toggle/:id" => "home#toggle", as: :toggle
+
+  # cart stuff
+  get "item/add_to_cart/:id" => "item#add_to_cart", as: :add_to_cart
 
   # Set the root url
   root :to => 'home#home'  

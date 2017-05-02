@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  include ChessStoreHelpers::Cart
+
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -54,6 +56,13 @@ class ItemsController < ApplicationController
       @item.destroy
       redirect_to items_path, notice: "Successfully removed #{@item.name} from the system."
     end
+  end
+
+  def add_to_cart
+    @item = Item.find(params[:id])
+    add_item_to_cart(@item)
+    flash[:notice] = "Added 1 #{@item.name} to cart"
+    redirect_to :back
   end
 
   private
