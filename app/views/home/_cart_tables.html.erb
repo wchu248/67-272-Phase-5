@@ -1,0 +1,31 @@
+<table class = "bordered highlight centered responsive-table">
+  <thead>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </thead>
+  <tbody>
+    <% for i in session[:cart].keys %>
+      <tr>
+        <td><%= link_to Item.find(i).name, item_path(Item.find(i)) %></td>
+        <td><%= session[:cart][i] %></td>
+        <td><%= number_to_currency Item.find(i).current_price * session[:cart][i] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<table class="col s3">
+  <tbody>
+    <tr>
+      <td><b>Subtotal: </b></td><td><%= number_to_currency(cart_cost) %></td>
+    </tr>
+    <tr>
+      <td><b>Shipping Cost: </b></td><td><%= number_to_currency(shipping_cost) %></td>
+    </tr>
+    <tr>
+      <td><b>Grand Total: </b></td><td><%= number_to_currency(cart_cost + shipping_cost) %></td>
+    </tr>
+  </tbody>
+</table>

@@ -60,8 +60,8 @@ class ItemsController < ApplicationController
 
   def add_to_cart
     @item = Item.find(params[:id])
-    add_item_to_cart(@item)
-    flash[:notice] = "Added 1 #{@item.name} to cart"
+    add_item_to_cart(@item.id)
+    flash[:notice] = "Added 1 #{@item.name} to cart."
     redirect_to :back
   end
 

@@ -1,1 +1,3 @@
-showing cart
+<h4>Your cart has <%= session[:cart].length %> <%= 'item'.pluralize(session[:cart].length) %>.</h4>
+
+<%= render partial: 'cart_tables' %>

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   # cart stuff
   get "view_cart" => "home#view_cart", as: :view_cart
-  get "item/add_to_cart/:id" => "item#add_to_cart", as: :add_to_cart
+  post "items/add_to_cart/:id" => "items#add_to_cart", as: :add_to_cart
 
   # Set the root url
   root :to => 'home#home'  
