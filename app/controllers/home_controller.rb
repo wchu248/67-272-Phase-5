@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
   def home
     if logged_in? && (current_user.role?(:shipper) || current_user.role?(:admin))
-      @not_shipped_orders = Order.not_shipped.chronological
-      @all_orders = Order.all.chronological
+      @not_shipped_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
     end
     @items_to_reorder = Item.need_reorder.alphabetical.to_a
   end
