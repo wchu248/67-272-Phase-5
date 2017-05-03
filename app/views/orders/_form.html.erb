@@ -15,7 +15,7 @@
 			<div class="input-field col s11">
 				<i class="material-icons prefix">school</i>
 				<%= f.label :school %><br></br>
-				<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name, { :selected => @recent_school } %>
+				<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name, { :selected => @recent_school.id } %>
 			</div>
     </div>
 		<div class="row">
