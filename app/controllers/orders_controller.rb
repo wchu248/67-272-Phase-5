@@ -21,6 +21,9 @@ class OrdersController < ApplicationController
 
   def show
     @order_items = @order.order_items.to_a
+    unless @order.payment_receipt.nil?
+      @payment_info = Base64.decode64(@order.payment_receipt)[-13..-1]
+    end
   end
 
   def new
@@ -44,8 +47,7 @@ class OrdersController < ApplicationController
     if @order.save
       save_each_item_in_cart(@order)
 
-      receipt = @order.pay
-      @payment_info = Base64.decode64(receipt)[-13..-1].to_s
+      @order.pay
       clear_cart
       redirect_to @order, notice: "Thank you for ordering from the Chess Store."
     else
