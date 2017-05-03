@@ -27,7 +27,18 @@ module ChessStoreHelpers
       end
     end
 
-    def remove_item_from_cart(item_id)
+    def remove_one_item_from_cart(item_id)
+      if session[:cart].keys.include?(item_id)
+        if session[:cart][item_id] > 1
+          # if item has more than one, just decrease the quantity
+          session[:cart][item_id] -= 1
+        else
+          # if item has just one, remove it entirely
+          session[:cart].delete(item_id)
+      end
+    end
+
+    def delete_item_from_cart(item_id)
       if session[:cart].keys.include?(item_id)
         session[:cart].delete(item_id)
       end
