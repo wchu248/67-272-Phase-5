@@ -26,3 +26,6 @@
 <% else %>
   No associated orders exist in our system.
 <% end %>
+
+<!-- Add the pagination using will_paginate gem -->
+<%= will_paginate @user_orders %>

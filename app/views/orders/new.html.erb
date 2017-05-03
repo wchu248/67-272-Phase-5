@@ -1,8 +1,12 @@
 <h4><i class="medium material-icons">shopping_cart</i>Place your Order</h4>
 
-<div id="order_cart_show">
-  <%= render partial: 'partials/cart_tables'%>
-</div>
-<div id="order_form">
-  <%= render partial: 'form' %>
-</div>
+<% unless session[:cart].empty? %>
+  <div id="order_cart_show">
+    <%= render partial: 'partials/cart_tables'%>
+  </div>
+  <div id="order_form">
+    <%= render partial: 'form' %>
+  </div>
+<% else %>
+  <h5><em>Please place at least one item in your cart before checking out.</em></h5>
+<% end %>
