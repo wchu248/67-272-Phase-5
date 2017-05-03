@@ -28,6 +28,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @recent_school = current_user.orders.chronological.first.school
   end
 
   def edit
