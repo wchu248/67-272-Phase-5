@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  require 'base64'
+
   include ChessStoreHelpers::Cart
   include ChessStoreHelpers::Shipping
 
@@ -42,11 +44,11 @@ class OrdersController < ApplicationController
     if @order.save
       save_each_item_in_cart(@order)
 
-      @order.pay
+      receipt = @order.pay
+      @payment_info = Base64.decode64(receipt)[-13..-1].to_s
       clear_cart
       redirect_to @order, notice: "Thank you for ordering from the Chess Store."
     else
-      flash[:error] = "Invalid credit card info"
       render action: 'new'
     end
   end

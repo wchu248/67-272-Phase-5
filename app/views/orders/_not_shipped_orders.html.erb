@@ -13,7 +13,7 @@
 		<% for order in @not_shipped_orders %>
       <tr>
         <td><%= link_to order.id, order_path(order) %></td>
-        <td><%= order.date.strftime("%b. %-d, %Y") %></td>
+        <td><%= order.date.strftime("%b %-d, %Y") %></td>
         <td><%= order.school.name %></td>
         <td><%= number_to_currency(order.grand_total) %></td>
       </tr>

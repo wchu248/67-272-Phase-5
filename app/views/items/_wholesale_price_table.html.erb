@@ -12,9 +12,9 @@
       <tbody>
         <% for p in @wholesale_price_history %>
           <tr>
-            <td><%= p.start_date.strftime("%b. %-d, %Y") %></td>
+            <td><%= p.start_date.strftime("%b %-d, %Y") %></td>
             <% unless p.end_date.nil? %>
-              <td><%= p.end_date.strftime("%b. %-d, %Y") %></td>
+              <td><%= p.end_date.strftime("%b %-d, %Y") %></td>
             <% else %>
               <td>---</td>
             <% end %>

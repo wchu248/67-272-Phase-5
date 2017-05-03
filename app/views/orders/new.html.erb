@@ -1,7 +1,8 @@
 <h4><i class="medium material-icons">shopping_cart</i>Place your Order</h4>
 
-<%= render partial: 'partials/cart_tables'%>
-<% 8.times do %>
-  <br>
-<% end %>
-<%= render partial: 'form' %>
+<div id="order_cart_show">
+  <%= render partial: 'partials/cart_tables'%>
+</div>
+<div id="order_form">
+  <%= render partial: 'form' %>
+</div>
