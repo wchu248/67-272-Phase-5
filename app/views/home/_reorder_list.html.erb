@@ -5,7 +5,10 @@
       <tr>
         <th>Item</th>
         <th>Inventory</th>
-              <th>Reorder Level</th>
+        <th>Reorder Level</th>
+        <% if current_user.role?(:admin) %>
+          <th></th>
+        <% end %>
         <th></th>
       </tr>
     </thead>
@@ -16,6 +19,9 @@
         <td><%= link_to item.name, item_path(item) %></td>
         <td><%= item.inventory_level %></td>
         <td><%= item.reorder_level %></td>
+        <% if current_user.role?(:admin) %>
+          <td><%= button_to "Add to Cart", add_to_cart_path(item) %></td>
+        <% end %>
         <td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
       </tr>
       <% end %>

@@ -1,12 +1,17 @@
-<!-- Display a table showing information of all the clocks -->
+<!-- Display a table showing information of all the boards -->
 <table class="bordered highlight centered responsive-table">
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Price</th>
-			<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
-				<th>Inventory</th>
-				<th></th>
+			<% if logged_in? %> 
+				<% if current_user.role?(:admin) || current_user.role?(:manager) %>
+					<th>Inventory</th>
+					<th></th>
+				<% end %>
+				<% if current_user.role?(:admin) || current_user.role?(:customer) %>
+					<th></th>
+				<% end %>
 			<% end %>
 		</tr>
 	</thead>
@@ -20,9 +25,14 @@
 			<% else %>
 				<td><%= number_to_currency(item.current_price) %></td>
 			<% end %>
-			<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
-				<td><%= number_with_delimiter(item.inventory_level) %></td>
-				<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
+			<% if logged_in? %>
+				<% if current_user.role?(:admin) || current_user.role?(:manager) %>
+					<td><%= number_with_delimiter(item.inventory_level) %></td>
+					<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
+				<% end %>
+				<% if current_user.role?(:admin) || current_user.role?(:customer) %>
+					<td><%= button_to "Add to Cart", add_to_cart_path(item) %></td>
+				<% end %>
 			<% end %>
 		</tr>
 		<% end %>

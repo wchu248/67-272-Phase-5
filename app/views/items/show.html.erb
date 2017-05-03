@@ -2,7 +2,7 @@
 <!-- Show the details of the item -->
 <% unless @item.photo_url.nil? %>
 	<div id="img_resize">
-		<%= image_tag @item.photo_url %>
+		<%= image_tag @item.photo_url, class: "right" %>
 	</div>
 <% else %>
 	<%= image_tag 'img_not_available.png', class: "right" %>
@@ -10,6 +10,8 @@
 <h3><%= @item.name %></h3>
 <% if !@item.active %>
   <h5><b>INACTIVE</b></h5>
+<% else %>
+	<%= button_to "Add to Cart", add_to_cart_path(@item) %>
 <% end %>
 <div id="price">
 	<%= render partial: 'price' %>

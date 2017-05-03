@@ -9,6 +9,8 @@
             <li><%= link_to "Add School", new_school_path %></li>
             <li><%= link_to "View Cart", view_cart_path %></li>
           <% end %>
+        <% elsif current_user.role?(:admin) %>
+          <li><%= link_to "View Cart", view_cart_path %></li>
         <% end %>
         <li><%= link_to "View Profile", user_path(current_user.id) %></li>
         <li><%= link_to "Edit Account", edit_user_path(current_user.id) %></li>

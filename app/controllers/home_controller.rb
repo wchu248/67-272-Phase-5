@@ -25,7 +25,7 @@ class HomeController < ApplicationController
   def toggle
     @oi = OrderItem.find(params[:id])
     if @oi.shipped_on.nil?
-      @oi.shipped_on = Date.current
+      @oi.shipped
       flash[:notice] = "Marked #{@oi.quantity} #{@oi.item.name.pluralize(@oi.quantity)} as shipped."
     end
     @oi.save!
