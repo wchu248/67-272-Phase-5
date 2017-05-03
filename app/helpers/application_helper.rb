@@ -10,5 +10,5 @@ module ApplicationHelper
   def shipping_cost
       calculate_cart_shipping
   end
-
+	
 end

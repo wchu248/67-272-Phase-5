@@ -1,3 +1,7 @@
 <h4>Your cart has <%= session[:cart].length %> <%= 'item'.pluralize(session[:cart].length) %>.</h4>
 
-<%= render partial: 'cart_tables' %>
+<%= render partial: 'partials/cart_tables' %>
+
+<div id="checkout_button">
+  <a class="waves-effect waves-light btn" <%= link_to "Proceed to Checkout", new_order_path %> </a>
+</div>
