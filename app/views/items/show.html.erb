@@ -1,8 +1,8 @@
-<a class="waves-effect waves-teal btn" <%= link_to "Back to Items", items_path %> </a>
+<a class="waves-effect waves-teal btn" <%= link_to "Back to Items", items_path %> </a><br><br>
 <!-- Show the details of the item -->
 <% unless @item.photo_url.nil? %>
 	<div id="img_resize">
-		<%= image_tag @item.photo_url, class: "right" %>
+		<%= image_tag @item.photo_url, class: "responsive-img" %>
 	</div>
 <% else %>
 	<%= image_tag 'img_not_available.png', class: "right" %>

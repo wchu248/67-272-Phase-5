@@ -1,3 +1,7 @@
 <h4><i class="medium material-icons">fiber_new</i>New User</h4>
 
+<% if !logged_in? %>
+  <h5>PLEASE NOTE: WE ONLY SHIP TO SCHOOLS, WE WILL NOT SHIP TO INDIVIDUALS.</h5>
+<% end %>
+
 <%= render partial: 'form' %>

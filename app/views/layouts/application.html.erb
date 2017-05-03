@@ -36,15 +36,8 @@
             <% elsif flash[:error] %>
               <div class="alert"><%= flash[:error] %></div>
             <% end %>
-            <% if logged_in? && (current_user.role?(:manager) || current_user.role?(:admin))%>
-              <div id="main_stuff">
-            <% end %>
             <%= yield %>
             <%= javascript_include_tag "application" %>
-            <% if logged_in? && (current_user.role?(:manager) || current_user.role?(:admin))%>
-              </div>
-              <%= render partial: 'partials/side_bar' %>
-            <% end %>
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  include ChessStoreHelpers::Cart
+
   before_action :set_user, only: [:show, :edit, :update]
   load_and_authorize_resource
 
@@ -30,6 +32,7 @@ class UsersController < ApplicationController
     if @user.save
       if !logged_in?
         session[:user_id] = @user.id
+        create_cart
         redirect_to home_path, notice: "Welcome, #{@user.first_name}. Thank you for signing up!"
       else
         redirect_to user_path(@user), notice: "Successfully created #{@user.proper_name}."
