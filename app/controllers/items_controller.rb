@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   include ChessStoreHelpers::Cart
 
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :add_to_cart, :remove_one_from_cart, :delete_from_cart]
 
   def index
     # get info on active items for the big three...
@@ -59,9 +59,20 @@ class ItemsController < ApplicationController
   end
 
   def add_to_cart
-    @item = Item.find(params[:id])
     add_item_to_cart(params[:id])
-    flash[:notice] = "Added 1 #{@item.name} to cart."
+    flash[:notice] = "Added 1 #{@item.name} to the cart."
+    redirect_to :back
+  end
+
+  def remove_one_from_cart
+    remove_one_item_from_cart(params[:id])
+    flash[:notice] = "Removed 1 #{@item.name} from the cart."
+    redirect_to :back
+  end
+
+  def delete_from_cart
+    delete_item_from_cart(params[:id])
+    flash[:notice] = "Deleted #{@item.name} from the cart."
     redirect_to :back
   end
 

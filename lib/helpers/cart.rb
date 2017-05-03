@@ -35,6 +35,7 @@ module ChessStoreHelpers
         else
           # if item has just one, remove it entirely
           session[:cart].delete(item_id)
+        end
       end
     end
 

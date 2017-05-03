@@ -4,14 +4,20 @@
     <th>Price</th>
     <th>Quantity</th>
     <th>Subtotal</th>
+    <th></th>
   </thead>
   <tbody>
     <% for i in session[:cart].keys %>
       <tr>
         <td><%= link_to Item.find(i).name, item_path(Item.find(i)) %></td>
         <td><%= number_to_currency(Item.find(i).current_price) %>
-        <td><%= session[:cart][i] %></td>
+        <td>
+          <%= button_to "-", remove_one_from_cart_path(Item.find(i))%>
+          <%= session[:cart][i] %>
+          <%= button_to "+", add_to_cart_path(Item.find(i)) %>
+        </td>
         <td><%= number_to_currency(Item.find(i).current_price * session[:cart][i]) %></td>
+        <td><%= button_to "Delete", delete_from_cart_path(Item.find(i))%></td>
       </tr>
     <% end %>
   </tbody>
