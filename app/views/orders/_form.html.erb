@@ -15,7 +15,11 @@
 			<div class="input-field col s11">
 				<i class="material-icons prefix">school</i>
 				<%= f.label :school %><br></br>
-				<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name, { :selected => @recent_school.id } %>
+				<% unless @recent_school.nil? %>
+					<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name, { :selected => @recent_school.id } %>
+				<% else %>
+					<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name %>
+				<% end %>
 			</div>
     </div>
 		<div class="row">

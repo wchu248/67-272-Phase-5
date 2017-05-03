@@ -22,13 +22,21 @@ class OrdersController < ApplicationController
   def show
     @order_items = @order.order_items.to_a
     unless @order.payment_receipt.nil?
-      @payment_info = Base64.decode64(@order.payment_receipt)[-13..-1]
+      info = Base64.decode64(@order.payment_receipt)[-13..-1]
+      type = info[0..3]
+      card_num = info[-8..-1]
+      if type[0] == ":"
+        type = info[2..3]
+      end
+      @payment_info = type + " " + card_num
     end
   end
 
   def new
     @order = Order.new
-    @recent_school = current_user.orders.chronological.first.school
+    unless current_user.orders.empty?
+      @recent_school = current_user.orders.chronological.first.school
+    end
   end
 
   def edit
@@ -37,17 +45,14 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-
     @order.credit_card_number = params[:order][:credit_card_number]
     @order.expiration_year = params[:order][:expiration_year]
     @order.expiration_month = params[:order][:expiration_month]
     @order.user_id = current_user.id
     @order.grand_total = calculate_cart_shipping + calculate_cart_items_cost
     @order.date = Date.current
-
     if @order.save
       save_each_item_in_cart(@order)
-
       @order.pay
       clear_cart
       redirect_to @order, notice: "Thank you for ordering from the Chess Store."
