@@ -31,7 +31,11 @@
 					<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(item) %> </a></td>
 				<% end %>
 				<% if current_user.role?(:admin) || current_user.role?(:customer) %>
-					<td><%= button_to "Add to Cart", add_to_cart_path(item) %></td>
+					<% if item.inventory_level == 0 %>
+						<td>OUT OF STOCK</td>
+					<% else %>
+						<td><%= button_to "Add to Cart", add_to_cart_path(item) %></td>
+					<% end %>
 				<% end %>
 			<% end %>
 		</tr>

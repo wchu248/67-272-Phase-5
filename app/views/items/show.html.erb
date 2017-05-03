@@ -11,7 +11,11 @@
 <% if !@item.active %>
   <h5><b>INACTIVE</b></h5>
 <% else %>
-	<%= button_to "Add to Cart", add_to_cart_path(@item) %>
+	<% if @item.inventory_level == 0 %>
+		<td>OUT OF STOCK</td>
+	<% else %>
+		<td><%= button_to "Add to Cart", add_to_cart_path(@item) %></td>
+	<% end %>
 <% end %>
 <div id="price">
 	<%= render partial: 'price' %>
