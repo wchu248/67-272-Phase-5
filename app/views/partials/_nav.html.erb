@@ -12,9 +12,13 @@
         <% elsif current_user.role?(:admin) %>
           <li><%= link_to "View Cart", view_cart_path %></li>
         <% end %>
-        <li><%= link_to "View Profile", user_path(current_user.id) %></li>
-        <li><%= link_to "Edit Account", edit_user_path(current_user.id) %></li>
-        <li><%= link_to "Logout", logout_path %></li>
+        <!-- Dropdown Content -->
+        <ul id="account_dropdown" class="dropdown-content">
+          <li><%= link_to "View Profile", user_path(current_user.id) %></li>
+          <li><%= link_to "Edit Account", edit_user_path(current_user.id) %></li>
+          <li><%= link_to "Logout", logout_path %></li>
+        </ul>
+        <li><a class="dropdown-button" href="#!" data-activates="account_dropdown">Welcome, <%= current_user.first_name %><i class="material-icons right">arrow_drop_down</i></a></li>
       <% elsif !logged_in? %>
         <li><%= link_to "Browse Items", items_path %></li>
         <li><%= link_to "Add School", new_school_path %></li>
