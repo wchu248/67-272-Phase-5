@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
 
   def show
     @order_items = @order.order_items.to_a
+    @unshipped_order = Order.not_shipped.find_by_id(@order.id)
     unless @order.payment_receipt.nil?
       info = Base64.decode64(@order.payment_receipt)[-13..-1]
       type = info[0..3]
