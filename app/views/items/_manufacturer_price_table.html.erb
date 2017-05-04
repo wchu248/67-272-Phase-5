@@ -1,27 +1,29 @@
-<% unless @manufacturer_price_history.empty? %>
-  <div id="manufacturer_price_table" class="col s6">
-    <p><b>Manufacturer Price History:</b></p>
-    <table class="bordered highlight centered responsive-table">
-      <thead>
-        <tr>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for p in @manufacturer_price_history %>
+<div id="manufacturer_price_table" class="col s6">
+  <p><b>Manufacturer Price History:</b></p>
+    <% unless @manufacturer_price_history.empty? %>
+      <table class="bordered highlight centered responsive-table">
+        <thead>
           <tr>
-            <td><%= p.start_date.strftime("%b %-d, %Y") %></td>
-            <% unless p.end_date.nil? %>
-              <td><%= p.end_date.strftime("%b %-d, %Y") %></td>
-            <% else %>
-              <td>---</td>
-            <% end %>
-            <td><%= number_to_currency(p.price) %> </td> 
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Price</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% end %>
+        </thead>
+        <tbody>
+          <% for p in @manufacturer_price_history %>
+            <tr>
+              <td><%= p.start_date.strftime("%b %-d, %Y") %></td>
+              <% unless p.end_date.nil? %>
+                <td><%= p.end_date.strftime("%b %-d, %Y") %></td>
+              <% else %>
+                <td>---</td>
+              <% end %>
+              <td><%= number_to_currency(p.price) %> </td> 
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>There are no manufacturer prices for this item at the time.</p>
+    <% end %>
+</div>

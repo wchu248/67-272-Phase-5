@@ -17,7 +17,7 @@ class HomeController < ApplicationController
 
   def view_cart
     if !logged_in? || current_user.nil? || current_user.role?(:shipper) || current_user.role?(:manager)
-      flash[:error] = "You are not authorized to take this action"
+      flash[:error] = "You are not authorized to take this action. Please log in as an appropriate user."
       redirect_to home_path
     end
   end

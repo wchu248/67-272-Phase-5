@@ -13,5 +13,8 @@
   <%= render partial: 'order_table'%>
 <% end %>
 
-<br>
-<a class="waves-effect waves-teal btn" <%= link_to "Edit Info", edit_user_path(@user) %> </a>
+<!-- Managers can only edit other employees, not customers -->
+<% unless current_user.role?(:manager) && @user.role?(:customer) %>
+  <br>
+  <a class="waves-effect waves-teal btn" <%= link_to "Edit Info", edit_user_path(@user) %> </a>
+<% end %>

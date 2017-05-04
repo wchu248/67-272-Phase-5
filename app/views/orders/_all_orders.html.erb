@@ -5,6 +5,9 @@
 			<th>Order ID</th>
       <th>Date</th>
       <th>School</th>
+			<% unless current_user.role?(:customer) %>
+				<th>User</th>
+			<% end %>
 			<th>Amount</th>
 		</tr>
 	</thead>
@@ -14,7 +17,18 @@
       <tr>
         <td><%= link_to order.id, order_path(order) %></td>
         <td><%= order.date.strftime("%b %-d, %Y") %></td>
-        <td><%= order.school.name %></td>
+				<% if current_user.role?(:manager) || current_user.role?(:admin) %>
+        	<td><%= link_to order.school.name, school_path(order.school) %></td>
+				<% else %>
+					<td><%= order.school.name %></td>
+				<% end %>
+				<% unless current_user.role?(:customer) %>
+					<% if current_user.role?(:manager) || current_user.role?(:admin) %>
+						<td><%= link_to order.user.name, user_path(order.user) %></td>
+					<% else %>
+						<td><%= order.user.name %></td>
+					<% end %>
+				<% end %>
         <td><%= number_to_currency(order.grand_total) %></td>
       </tr>
 		<% end %>
