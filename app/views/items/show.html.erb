@@ -14,7 +14,9 @@
 	<% if @item.inventory_level == 0 %>
 		<td>OUT OF STOCK</td>
 	<% else %>
-		<td><%= button_to "Add to Cart", add_to_cart_path(@item) %></td>
+		<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer)) %>
+			<td><%= button_to "Add to Cart", add_to_cart_path(@item) %></td>
+		<% end %>
 	<% end %>
 <% end %>
 <div id="price">
