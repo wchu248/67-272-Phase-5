@@ -20,6 +20,10 @@
   <li><%= link_to "Make a Purchase", new_purchase_path %></li>
   <% if current_user.role?(:admin) %>
     <li><%= link_to "Add a School", new_school_path %></li>
+    <li><%= link_to "Add a User", new_user_path %></li>
+  <% elsif current_user.role?(:manager) %>
+    <li><%= link_to "Add an Employee", new_user_path %></li>
   <% end %>
-  <li><%= link_to "Add a User", new_user_path %></li>
+
+  
 </ul>
