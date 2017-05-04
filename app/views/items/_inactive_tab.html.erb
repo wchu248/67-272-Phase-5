@@ -1,0 +1,6 @@
+<h4>Inactive Items</h4>
+<% unless @inactive_items.empty? %>
+  <%= render partial: "inactive_items" %>
+<% else %>
+  <p>There are no inactive items in the system at this time.</p>
+<% end %>

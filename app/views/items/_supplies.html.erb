@@ -14,7 +14,11 @@
 				<% else %>
 					<p><b><%= link_to item.name, item_path(item) %></b></p>
 				<% end %>
-				<p><%= number_to_currency(item.current_price) %></p>
+				<% unless item.current_price.nil? %>
+					<p><%= number_to_currency(item.current_price) %></p>
+				<% else %>
+					<p>No current price</p>
+				<% end %>
 			</div>
 			<div class="card-action">
 				<% if logged_in? %>
