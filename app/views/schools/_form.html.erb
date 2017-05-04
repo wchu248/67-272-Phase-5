@@ -41,7 +41,7 @@
 			<div class="input-field col s10">
 				<i class="material-icons prefix">terrain</i>
 				<%= f.label :state %><br><br>
-    		<%= f.select :state, School::STATES_LIST %>
+    		<%= f.select :state, School::STATES_LIST, { :prompt => 'Select a state...' } %>
 			</div>
 			<div class="input-field col s10">
 				<i class="material-icons prefix">art_track</i>
