@@ -3,18 +3,34 @@
 		<div class="card small">
 			<div class="card-image">
 				<% if item.photo_url.nil? %>
-					<p><%= image_tag "img_not_available.png", height: "200px", title: "I'm sure it looks delicious" %></p>
+					<p><%= image_tag "img_not_available.png", height: "200px" %></p>
 				<% else %>
-					<p><%= image_tag item.photo_url, height: "200px", title: "Delicious!" %></p>
+					<p><%= image_tag item.photo_url, height: "200px" %></p>
 				<% end %>
 			</div>
 			<div class="card-content truncate">
-				<p><b><%= link_to item.name, item_path(item) %></b></p>
+				<% if current_user.nil? || current_user.role?(:shipper) %>
+					<p><b><%= item.name %></b></p>
+				<% else %>
+					<p><b><%= link_to item.name, item_path(item) %></b></p>
+				<% end %>
 				<p><%= number_to_currency(item.current_price) %></p>
 			</div>
 			<div class="card-action">
-				<% if logged_in? && (current_user.role?(:customer) || current_user.role?(:admin)) %>
-					<%= button_to "Add To Cart", add_to_cart_path(item) %>
+				<% if logged_in? %>
+					<% if current_user.role?(:customer) || current_user.role?(:admin) %>
+						<%= button_to "Add To Cart", add_to_cart_path(item) %>
+					<% elsif current_user.role?(:manager) %>
+						<%= button_to "Edit Item", edit_item_path(item) %>
+					<% elsif current_user.role?(:shipper) %>
+						<%= link_to(item_path(item), class:'teal-text') do %>
+							View Details
+						<% end %>
+					<% end %>
+				<% else %>
+					<%= link_to(item_path(item), class:'teal-text') do %>
+						View Details
+					<% end %>
 				<% end %>
 			</div>
 		</div>
