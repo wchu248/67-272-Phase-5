@@ -126,10 +126,6 @@ img.left {
 	border: 0px;
 }
 
-.parallax-container {
-  height: 150px;
-}
-
 body {
   display: flex;
   min-height: 100vh;
@@ -140,9 +136,6 @@ body {
               rgba(145, 102, 36, 0.5) 10px,
               rgba(169, 123, 54, 0.5) 10px,
               rgba(169, 123, 54, 0.5) 20px);
-}
-
-body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
