@@ -36,10 +36,14 @@ class Ability
       can :create, School
       # can see their own orders
       can :read, Order do |o|
-          o.user_id == user.id
+        o.user_id == user.id
       end
       # can place an order for themselves
       can :create, Order
+      # can cancel their own orders
+      can :destroy, Order do |o|
+        o.user_id == user.id
+      end
     else
       # guest action
       can :read, Item

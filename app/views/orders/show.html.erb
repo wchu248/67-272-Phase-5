@@ -2,6 +2,9 @@
 Order #<%= @order.id %> | Ordered on: <%= @order.date.strftime("%b %-d, %Y") %> | Shipped on: 
 <% if Order.not_shipped.find_by_id(@order.id) %> 
   not yet shipped
+  <% if current_user.role?(:customer) || current_user.role?(:admin) %>
+    <a class="waves-effect waves-red btn tooltipped" data-position="top" data-delay="10" data-tooltip="Are you sure?" <%= link_to "Cancel Order", @order, method: :delete %> </a>
+  <% end %>
 <% else %>
   <%= @order.order_items.to_a.max.shipped_on.strftime("%b %-d, %Y") %>
 <% end %></p>

@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   include ChessStoreHelpers::Cart
   include ChessStoreHelpers::Shipping
 
-  before_action :check_login
   before_action :set_order, only: [:show, :destroy]
   load_and_authorize_resource
 

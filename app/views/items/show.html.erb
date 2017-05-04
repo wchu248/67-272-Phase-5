@@ -38,11 +38,3 @@
 	<a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_item_path(@item) %> </a>
 	<a class="waves-effect waves-red btn tooltipped" data-position="top" data-delay="10" data-tooltip="Are you sure?" <%= link_to "Delete", @item, method: :delete %> </a>
 <% end %>
-<% if logged_in? && (current_user.role?(:admin) || current_user.role?(:manager)) %>
-	<!-- <div id="new_price">
-		<u><h5>Options:</h5></u>
-		<%= link_to(new_item_price_path(item_id: @item.id), id: 'new_price_link', remote: true) do %>
-			Change Price
-		<% end %>
-	</div> -->
-<% end %>
