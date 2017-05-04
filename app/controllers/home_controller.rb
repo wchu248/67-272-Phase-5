@@ -20,6 +20,11 @@ class HomeController < ApplicationController
       flash[:error] = "You are not authorized to take this action. Please log in as an appropriate user."
       redirect_to home_path
     end
+    @cart_items = []
+    session[:cart].each do |item_id, quantity|
+      oi = OrderItem.new(item_id: item_id, quantity: quantity)
+      @cart_items << oi
+    end
   end
 
   def toggle

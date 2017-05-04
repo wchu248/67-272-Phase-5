@@ -36,6 +36,11 @@ class OrdersController < ApplicationController
     unless current_user.orders.empty?
       @recent_school = current_user.orders.chronological.first.school
     end
+    @cart_items = []
+    session[:cart].each do |item_id, quantity|
+      oi = OrderItem.new(item_id: item_id, quantity: quantity)
+      @cart_items << oi
+    end
   end
 
   def edit
