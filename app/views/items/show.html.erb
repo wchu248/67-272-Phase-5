@@ -5,7 +5,7 @@
 		<%= image_tag @item.photo_url, class: "responsive-img" %>
 	</div>
 <% else %>
-	<%= image_tag 'img_not_available.png', class: "right" %>
+	<%= image_tag 'img_not_available.png', class: "responsive-img" %>
 <% end %>
 <h3><%= @item.name %></h3>
 <% if !@item.active %>
