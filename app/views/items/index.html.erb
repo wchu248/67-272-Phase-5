@@ -8,7 +8,7 @@
 
 <% unless @boards.empty? && @pieces.empty? && @clocks.empty? && @supplies.empty? && @inactive_items.empty? %>
   <div class="row">
-    <div class="col s10">
+    <div class="col s12">
       <ul class="tabs tabs-fixed-width">
         <li class="tab col s3"><a href="#all">All</a></li>
         <li class="tab col s3"><a href="#boards">Boards</a></li>
@@ -17,31 +17,31 @@
         <li class="tab col s3"><a href="#supplies">Supplies</a></li>
       </ul>
     </div>
-    <div id="all" class="col s10">
+    <div id="all" class="col s12">
       <%= render partial: 'all_tab' %>
     </div>
-    <div id="boards" class="col s10">
+    <div id="boards" class="col s12">
       <% unless @boards.empty? %>
         <%= render partial: "boards" %>
       <% else %>
         <p>There are no active boards in the system at this time.</p>
       <% end %>
     </div>
-    <div id="pieces" class="col s10">
+    <div id="pieces" class="col s12">
       <% unless @pieces.empty? %>
         <%= render partial: "pieces" %>
       <% else %>
         <p>There are no active pieces in the system at this time.</p>
       <% end %>
     </div>
-    <div id="clocks" class="col s10">
+    <div id="clocks" class="col s12">
       <% unless @clocks.empty? %>
         <%= render partial: "clocks" %>
       <% else %>
         <p>There are no active clocks in the system at this time.</p>
       <% end %>
     </div>
-    <div id="supplies" class="col s10">
+    <div id="supplies" class="col s12">
       <% unless @supplies.empty? %>
         <%= render partial: "supplies" %>
       <% else %>
