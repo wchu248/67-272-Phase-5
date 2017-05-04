@@ -7,6 +7,7 @@
         <th>Item</th>
         <th>Quantity</th>
         <th>Subtotal</th>
+        <th>Shipped On</th>
       </tr>
     </thead>
     <tbody>
@@ -15,6 +16,11 @@
           <td><%= link_to i.item.name, item_path(i.item) %>
           <td><%= i.quantity %></td>
           <td><%= number_to_currency(i.subtotal) %> </td> 
+          <% unless i.shipped_on.nil? %>
+            <td><%= i.shipped_on.strftime("%b %-d, %Y") %></td>
+          <% else %>
+            <td>---</td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
