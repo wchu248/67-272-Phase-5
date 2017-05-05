@@ -8055,3 +8055,10 @@ $(document).ready(function() {
     belowOrigin: true,
   });
 });
+
+// Flash fade
+$(function() {
+   $('.notice').fadeIn('normal', function() {
+      $(this).delay(3700).fadeOut();
+   });
+});
