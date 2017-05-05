@@ -9,7 +9,12 @@
 	That's why we are committed to giving you the best products
 	at the most affordable prices. If your school or 
 	institution needs chess items, then this is the store
-	for you! Happy shopping! <p>
+	for you! Happy shopping! </p>
+	<% if !logged_in? %>
+		<b>Note: Please <%= link_to "log in", login_path %> to our 
+		   system or <%= link_to "create an account", new_user_path %> 
+			 in order to add a school.</b> 
+	<% end %>
 <% elsif current_user.role?(:manager) %>
 	<%= render partial: 'reorder_list' %>
 <% elsif current_user.role?(:shipper) %>
