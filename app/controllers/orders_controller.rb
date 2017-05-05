@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @active_schools = School.active.alphabetical
     unless current_user.orders.empty?
       @recent_school = current_user.orders.chronological.first.school
     end
