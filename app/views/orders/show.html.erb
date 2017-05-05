@@ -3,7 +3,15 @@
     <a class="waves-effect waves-red btn tooltipped" data-position="top" data-delay="10" data-tooltip="Are you sure?" <%= link_to "Cancel Order", @order, method: :delete %> </a>
 <% end %>
 <p>
-Order #<%= @order.id %> | Ordered on: <%= @order.date.strftime("%b %-d, %Y") %> | Shipped on: 
+<% if current_user.role?(:customer) %>
+  Order #<%= @order.id %> | Ordered on: <%= @order.date.strftime("%b %-d, %Y") %> | Shipped on: 
+<% elsif current_user.role?(:shipper) %>
+  Order #<%= @order.id %> | Ordered by: <%= @order.user.proper_name %> <br>
+  Ordered on: <%= @order.date.strftime("%b %-d, %Y") %> | Shipped on: 
+<% else %>
+  Order #<%= @order.id %> | Ordered by: <%= link_to @order.user.proper_name, user_path(@order.user) %> <br>
+  Ordered on: <%= @order.date.strftime("%b %-d, %Y") %> | Shipped on: 
+<% end %>
 <% if @unshipped_order %> 
   not yet shipped
 <% else %>
