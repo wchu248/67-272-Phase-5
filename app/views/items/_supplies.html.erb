@@ -30,6 +30,8 @@
 						<%= link_to(item_path(item), class:'teal-text') do %>
 							View Details
 						<% end %>
+					<% elsif current_user.role?(:customer) %>
+						<%= button_to "Add to Cart", add_to_cart_path(item) %>
 					<% end %>
 				<% else %>
 					<%= link_to(item_path(item), class:'teal-text') do %>
