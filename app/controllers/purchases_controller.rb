@@ -1,6 +1,4 @@
 class PurchasesController < ApplicationController
-
-  load_and_authorize_resource
   
   def index
     @purchases = Purchase.all.chronological.paginate(page: params[:page]).per_page(10)
