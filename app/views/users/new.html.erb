@@ -1,6 +1,6 @@
 <% if !logged_in? %>
   <h4><i class="medium material-icons">fiber_new</i>New Customer</h4>
-  <h5>PLEASE NOTE: WE ONLY SHIP TO SCHOOLS, WE WILL NOT SHIP TO INDIVIDUALS.</h5>
+  <h5>Please Note: We only ship schools, we will not ship to individuals.</h5>
 <% elsif !current_user.role?(:manager) %>
   <h4><i class="medium material-icons">fiber_new</i>New User</h4>
 <% else %>
