@@ -34,7 +34,6 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @active_schools = School.active.alphabetical
     unless current_user.orders.empty?
       @recent_school = current_user.orders.chronological.first.school
     end
@@ -51,6 +50,11 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @cart_items = []
+    session[:cart].each do |item_id, quantity|
+      oi = OrderItem.new(item_id: item_id, quantity: quantity)
+      @cart_items << oi
+    end
     @order.credit_card_number = params[:order][:credit_card_number]
     @order.expiration_year = params[:order][:expiration_year]
     @order.expiration_month = params[:order][:expiration_month]

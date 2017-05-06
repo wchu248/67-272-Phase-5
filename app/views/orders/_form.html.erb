@@ -16,9 +16,9 @@
 				<i class="material-icons prefix">school</i>
 				<%= f.label :school %><br></br>
 				<% unless @recent_school.nil? %>
-					<%= f.collection_select :school_id, @active_schools, :id, :name, { :selected => @recent_school.id } %>
+					<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name, { :selected => @recent_school.id } %>
 				<% else %>
-					<%= f.collection_select :school_id, @active_schools, :id, :name %>
+					<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name %>
 				<% end %>
 			</div>
     </div>
