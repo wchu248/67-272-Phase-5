@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'errors/not_found'
+
+  get 'errors/internal_server_error'
+
   # Routes for main resources
   resources :items
   resources :purchases
@@ -25,6 +29,10 @@ Rails.application.routes.draw do
   post "items/add_to_cart/:id" => "items#add_to_cart", as: :add_to_cart
   post "items/remove_one_from_cart/:id" => "items#remove_one_from_cart", as: :remove_one_from_cart
   post "items/delete_from_cart/:id" => "items#delete_from_cart", as: :delete_from_cart
+
+  # error routes
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 
   # Set the root url
   root :to => 'home#home'  

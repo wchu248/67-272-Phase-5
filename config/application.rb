@@ -24,5 +24,9 @@ module ChessStore
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # This tells Rails to serve error pages from the Rails app itself, rather than using static error pages.
+    config.exceptions_app = self.routes
+
   end
 end
