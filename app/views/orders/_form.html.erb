@@ -18,7 +18,7 @@
 				<% unless @recent_school.nil? %>
 					<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name, { :selected => @recent_school.id } %>
 				<% else %>
-					<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name %>
+					<%= f.collection_select :school_id, School.active.alphabetical.all, :id, :name, { :prompt => "Select a school..." } %>
 				<% end %>
 			</div>
     </div>
