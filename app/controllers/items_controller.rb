@@ -5,20 +5,16 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :add_to_cart, :remove_one_from_cart, :delete_from_cart]
 
   def index
-    # get info on active items for the big three...
     @boards = Item.active.for_category('boards').alphabetical.paginate(:page => params[:page]).per_page(10)
     @pieces = Item.active.for_category('pieces').alphabetical.paginate(:page => params[:page]).per_page(10)
     @clocks = Item.active.for_category('clocks').alphabetical.paginate(:page => params[:page]).per_page(10)
     @supplies = Item.active.for_category('supplies').alphabetical.paginate(:page => params[:page]).per_page(10)    
-    # get a list of any inactive items for sidebar
     @inactive_items = Item.inactive.alphabetical.to_a
   end
 
   def show
-    # get the price history for this item
     @wholesale_price_history = @item.item_prices.wholesale.chronological.to_a
     @manufacturer_price_history = @item.item_prices.manufacturer.chronological.to_a
-    # everyone sees similar items in the sidebar
     @similar_items = Item.for_category(@item.category).active.alphabetical.to_a - [@item]
   end
 
