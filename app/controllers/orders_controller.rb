@@ -50,11 +50,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @cart_items = []
-    session[:cart].each do |item_id, quantity|
-      oi = OrderItem.new(item_id: item_id, quantity: quantity)
-      @cart_items << oi
-    end
+    @cart_items = get_list_of_items_in_cart
     @order.credit_card_number = params[:order][:credit_card_number]
     @order.expiration_year = params[:order][:expiration_year]
     @order.expiration_month = params[:order][:expiration_month]

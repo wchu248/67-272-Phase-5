@@ -12,9 +12,9 @@
         <td><%= link_to i.item.name, item_path(i.item) %></td>
         <td><%= number_to_currency(i.item.current_price) %>
         <td>
-          <%= button_to "-", remove_one_from_cart_path(i.item.id)%>
-          <%= i.quantity %>
           <%= button_to "+", add_to_cart_path(i.item.id) %>
+          <%= i.quantity %>
+          <%= button_to "-", remove_one_from_cart_path(i.item.id)%>
         </td>
         <td><%= number_to_currency(i.item.current_price * i.quantity) %></td>
         <td><%= button_to "Delete", delete_from_cart_path(i.item.id)%></td>

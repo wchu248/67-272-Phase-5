@@ -1,4 +1,7 @@
 class HomeController < ApplicationController
+
+  include ChessStoreHelpers::Cart
+
   def home
     if logged_in? && (current_user.role?(:shipper) || current_user.role?(:admin))
       @not_shipped_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
@@ -20,11 +23,7 @@ class HomeController < ApplicationController
       flash[:error] = "You are not authorized to take this action. Please log in as an appropriate user."
       redirect_to home_path
     end
-    @cart_items = []
-    session[:cart].each do |item_id, quantity|
-      oi = OrderItem.new(item_id: item_id, quantity: quantity)
-      @cart_items << oi
-    end
+    @cart_items = get_list_of_items_in_cart
   end
 
   def toggle
