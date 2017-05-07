@@ -1,8 +1,8 @@
 <!-- Display a table showing information of all the boards -->
-<table class="bordered highlight centered responsive-table">
+<table class="bordered highlight responsive-table">
 	<thead>
 		<tr>
-			<th>Name</th>
+			<th>Name (Username)</th>
       <th>Email</th>
 			<th>Role</th>
 		</tr>
@@ -11,7 +11,7 @@
 	<tbody>
 		<% for user in @inactive_users %>
       <tr>
-        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= link_to user.name, user_path(user) %><%= " (#{user.username})" %></td>
         <td><%= mail_to(user.email, user.email, encode: "javascript") %></td>
         <td><%= user.role.capitalize %></td>
       </tr>
