@@ -16,6 +16,8 @@ class Ability
         u.role != 'customer'
       end
       can :crud, Item
+      can :create, ItemPrice
+      can :create, Purchase
     elsif user.role? :shipper
       can :show, User do |u|
         u.id == user.id
