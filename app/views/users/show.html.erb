@@ -8,7 +8,7 @@
 <em>A valued Chess Store <%= @user.role %> since <%= Date.current.year %>.</em>
 <br><br>
 
-<% unless current_user.role?(:shipper) %>
+<% if @user.role?(:customer) %>
   <h5>Orders</h5>
   <%= render partial: 'order_table'%>
 <% end %>
