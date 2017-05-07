@@ -3,7 +3,7 @@
   <p><b>Reorder Level:</b> <%= number_with_delimiter(@item.reorder_level) %></p>
   <% if current_user.role?(:admin) || current_user.role?(:manager) %>
       <%= link_to(new_purchase_path(item_id: @item.id), id:'new_purchase_link', remote: true) do %>
-        Add New Purchase
+        <b>Add New Purchase</b>
       <% end %>
   <% end %>
 </div>
