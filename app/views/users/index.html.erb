@@ -3,7 +3,7 @@
 </p>
 
 <div class="row">
-  <div class="col s10">
+  <div class="col s12">
     <ul class="tabs tabs-fixed-width">
       <li class="tab col s3"><a href="#active">Active</a></li>
       <li class="tab col s3"><a href="#inactive">Inactive</a></li>
@@ -11,28 +11,28 @@
       <li class="tab col s3"><a href="#customers">Customers</a></li>
     </ul>
   </div>
-  <div id="active" class="col s10">
+  <div id="active" class="col s12">
     <% unless @active_users.empty? %>
       <%= render partial: "active_users" %>
     <% else %>
       <p>There are no active users in the system at this time.</p>
     <% end %>
   </div>
-  <div id="inactive" class="col s10">
+  <div id="inactive" class="col s12">
     <% unless @inactive_users.empty? %>
       <%= render partial: "inactive_users" %>
     <% else %>
       <p>There are no inactive users in the system at this time.</p>
     <% end %>
   </div>
-  <div id="employees" class="col s10">
+  <div id="employees" class="col s12">
     <% unless @employees.empty? %>
       <%= render partial: "employees" %>
     <% else %>
       <p>There are no employees in the system at this time.</p>
     <% end %>
   </div>
-  <div id="customers" class="col s10">
+  <div id="customers" class="col s12">
     <% unless @customers.empty? %>
       <%= render partial: "customers" %>
     <% else %>

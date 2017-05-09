@@ -6,6 +6,9 @@
       <th>Email</th>
       <th>Role</th>
 			<th>Active</th>
+			<% if current_user.role?(:admin) || current_user.role?(:manager) %>
+				<th></th>
+			<% end %>
 		</tr>
 	</thead>
 
@@ -22,6 +25,9 @@
             N
           <% end %>
         </td>
+				<% if current_user.role?(:admin) || current_user.role?(:manager) %>
+					<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_user_path(user) %> </a></td>
+				<% end %>
       </tr>
 		<% end %>
 	</tbody>

@@ -5,6 +5,9 @@
 			<th>Name (Username)</th>
       <th>Email</th>
 			<th>Role</th>
+			<% if current_user.role?(:admin) %>
+				<th></th>
+			<% end %>
 		</tr>
 	</thead>
 
@@ -14,6 +17,9 @@
         <td><%= link_to user.name, user_path(user) %><%= " (#{user.username})" %></td>
         <td><%= mail_to(user.email, user.email, encode: "javascript") %></td>
         <td><%= user.role.capitalize %></td>
+				<% if current_user.role?(:admin) %>
+					<td><a class="waves-effect waves-teal btn" <%= link_to "Edit", edit_user_path(user) %> </a></td>
+				<% end %>
       </tr>
 		<% end %>
 	</tbody>
